@@ -2,65 +2,137 @@
 @tailwind components;
 @tailwind utilities;
 @layer base {
-  :root {
-    --background: 0 0% 100%;
-    --foreground: 224 71.4% 4.1%;
-    --card: 0 0% 100%;
-    --card-foreground: 224 71.4% 4.1%;
-    --popover: 0 0% 100%;
-    --popover-foreground: 224 71.4% 4.1%;
-    --primary: 220.9 39.3% 11%;
-    --primary-foreground: 210 20% 98%;
-    --secondary: 220 14.3% 95.9%;
-    --secondary-foreground: 220.9 39.3% 11%;
-    --muted: 220 14.3% 95.9%;
-    --muted-foreground: 220 8.9% 46.1%;
-    --accent: 220 14.3% 95.9%;
-    --accent-foreground: 220.9 39.3% 11%;
-    --destructive: 0 84.2% 60.2%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 220 13% 91%;
-    --input: 220 13% 91%;
-    --ring: 224 71.4% 4.1%;
-    --chart-1: 12 76% 61%;
-    --chart-2: 173 58% 39%;
-    --chart-3: 197 37% 24%;
-    --chart-4: 43 74% 66%;
-    --chart-5: 27 87% 67%;
-    --radius: 0.5rem
-  }
-  .dark {
-    --background: 224 71.4% 4.1%;
-    --foreground: 210 20% 98%;
-    --card: 224 71.4% 4.1%;
-    --card-foreground: 210 20% 98%;
-    --popover: 224 71.4% 4.1%;
-    --popover-foreground: 210 20% 98%;
-    --primary: 210 20% 98%;
-    --primary-foreground: 220.9 39.3% 11%;
-    --secondary: 215 27.9% 16.9%;
-    --secondary-foreground: 210 20% 98%;
-    --muted: 215 27.9% 16.9%;
-    --muted-foreground: 217.9 10.6% 64.9%;
-    --accent: 215 27.9% 16.9%;
-    --accent-foreground: 210 20% 98%;
-    --destructive: 0 62.8% 30.6%;
-    --destructive-foreground: 210 20% 98%;
-    --border: 215 27.9% 16.9%;
-    --input: 215 27.9% 16.9%;
-    --ring: 216 12.2% 83.9%;
-    --chart-1: 220 70% 50%;
-    --chart-2: 160 60% 45%;
-    --chart-3: 30 80% 55%;
-    --chart-4: 280 65% 60%;
-    --chart-5: 340 75% 55%
-  }
+	:root {
+		/* Background Colors */
+		--bg-primary: #fff8f4; /* Soft cream */
+		--bg-secondary: #fef4ec; /* Light peach */
+		--bg-dark: #1e1b18; /* Deep warm gray */
+		--bg-primary-inverse: #251e1a; /* Darker warm tone */
+		--bg-secondary-inverse: #3a2e29; /* Muted earthy brown */
+
+		/* Text Colors */
+		--text-primary: #1f1a18; /* Deep warm brown */
+		--text-secondary: #5a463f; /* Muted chocolate */
+		--text-muted: #857671; /* Softer muted brown */
+		--text-hover: #a36f60; /* Warm reddish-brown */
+		--text-primary-inverse: #fef8f4; /* Pale cream */
+		--text-secondary-inverse: #dbc7bf; /* Softer peachy brown */
+		--text-muted-inverse: #b59a92; /* Muted peachy tone */
+		--text-hover-inverse: #ffdbcc; /* Light peach hover */
+
+		/* Button Colors */
+		--btn-primary-bg: #ff6347; /* Tomato red */
+		--btn-primary-hover-bg: #e5573f; /* Darker tomato red */
+		--btn-secondary-bg: #ffffff; /* White */
+		--btn-secondary-hover-bg: #fef4ec; /* Very light peach */
+
+		/* Border Colors */
+		--border-color: #e8dcd6; /* Soft peachy border */
+		--border-color-inverse: #4a3d38; /* Darker warm brown border */
+	}
+
+	.dark {
+		/* Background Colors */
+		--bg-primary: #251e1a; /* Darker warm tone */
+		--bg-secondary: #3a2e29; /* Muted earthy brown */
+		--bg-dark: #1e1b18; /* Deep warm gray */
+		--bg-primary-inverse: #fff8f4; /* Soft cream */
+		--bg-secondary-inverse: #fef4ec; /* Light peach */
+
+		/* Text Colors */
+		--text-primary: #fef8f4; /* Pale cream */
+		--text-secondary: #dbc7bf; /* Softer peachy brown */
+		--text-muted: #b59a92; /* Muted peachy tone */
+		--text-hover: #ffdbcc; /* Light peach hover */
+		--text-primary-inverse: #1f1a18; /* Deep warm brown */
+		--text-secondary-inverse: #5a463f; /* Muted chocolate */
+		--text-muted-inverse: #857671; /* Softer muted brown */
+		--text-hover-inverse: #a36f60; /* Warm reddish-brown */
+
+		/* Button Colors */
+		--btn-primary-bg: #ff6347; /* Tomato red */
+		--btn-primary-hover-bg: #e5573f; /* Darker tomato red */
+		--btn-secondary-bg: #4a3d38; /* Warm dark brown */
+		--btn-secondary-hover-bg: #5a463f; /* Slightly lighter warm brown */
+
+		/* Border Colors */
+		--border-color: #4a3d38; /* Darker warm brown border */
+		--border-color-inverse: #e8dcd6; /* Soft peachy border */
+	}
 }
 @layer base {
-  * {
-    @apply border-border;
-  }
-  body {
-    @apply bg-background text-foreground;
-  }
+	:root {
+		/* Background Colors */
+		--bg-primary: #fff5f5; /* Very pale pink */
+		--bg-secondary: #ffeaea; /* Pale pink */
+		--bg-dark: #1e1212; /* Deep red-black */
+		--bg-primary-inverse: #290f0f; /* Dark maroon */
+		--bg-secondary-inverse: #421b1b; /* Muted maroon */
+
+		/* Text Colors */
+		--text-primary: #331010; /* Dark reddish-brown */
+		--text-secondary: #6a2a2a; /* Warm muted red */
+		--text-muted: #946363; /* Softer muted red */
+		--text-hover: #b33d3d; /* Vibrant tomato red */
+		--text-primary-inverse: #ffeaea; /* Pale pink */
+		--text-secondary-inverse: #d9aaaa; /* Muted light red */
+		--text-muted-inverse: #c78c8c; /* Muted rosy tone */
+		--text-hover-inverse: #ffb3b3; /* Light tomato hover */
+
+		/* Button Colors */
+		--btn-primary-bg: #ff453a; /* Bright tomato red */
+		--btn-primary-hover-bg: #e03c33; /* Slightly darker bright red */
+		--btn-secondary-bg: #ffffff; /* White */
+		--btn-secondary-hover-bg: #ffeaea; /* Pale pink */
+
+		/* Border Colors */
+		--border-color: #fcd6d6; /* Light pinkish border */
+		--border-color-inverse: #5e2c2c; /* Dark reddish-brown border */
+	}
+
+	.dark {
+		/* Background Colors */
+		--bg-primary: #290f0f; /* Dark maroon */
+		--bg-secondary: #421b1b; /* Muted maroon */
+		--bg-dark: #1e1212; /* Deep red-black */
+		--bg-primary-inverse: #fff5f5; /* Very pale pink */
+		--bg-secondary-inverse: #ffeaea; /* Pale pink */
+
+		/* Text Colors */
+		--text-primary: #ffeaea; /* Pale pink */
+		--text-secondary: #d9aaaa; /* Muted light red */
+		--text-muted: #c78c8c; /* Muted rosy tone */
+		--text-hover: #ffb3b3; /* Light tomato hover */
+		--text-primary-inverse: #331010; /* Dark reddish-brown */
+		--text-secondary-inverse: #6a2a2a; /* Warm muted red */
+		--text-muted-inverse: #946363; /* Softer muted red */
+		--text-hover-inverse: #b33d3d; /* Vibrant tomato red */
+
+		/* Button Colors */
+		--btn-primary-bg: #ff453a; /* Bright tomato red */
+		--btn-primary-hover-bg: #e03c33; /* Slightly darker bright red */
+		--btn-secondary-bg: #5e2c2c; /* Warm reddish-black */
+		--btn-secondary-hover-bg: #6a2a2a; /* Slightly lighter maroon */
+
+		/* Border Colors */
+		--border-color: #5e2c2c; /* Dark reddish-brown border */
+		--border-color-inverse: #fcd6d6; /* Light pinkish border */
+	}
+}
+
+@layer base {
+	* {
+		@apply border-border;
+	}
+	body {
+		@apply bg-background text-foreground;
+	}
+}
+
+.primary-button {
+	@apply bg-app_btn_primary_bg px-6 py-2 rounded text-white hover:bg-app_btn_primary_hover_bg;
+}
+
+.secondary-button {
+	@apply bg-app_btn_secondary_bg px-6 py-2 rounded text-app_btn_primary_bg hover:bg-app_btn_secondary_hover_bg border border-black;
 }
