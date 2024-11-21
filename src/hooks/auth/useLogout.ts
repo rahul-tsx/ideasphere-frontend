@@ -1,7 +1,7 @@
 // src/hooks/useLogin.ts
 import { useMutation } from '@tanstack/react-query';
 import useStatus from '../useStatus';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
 import { logout } from '@/api/auth/logout';
 import useAuthStore from '@/store/authStore';
 
@@ -13,9 +13,9 @@ export const useLogout = () => {
 	return useMutation({
 		mutationFn: logout,
 		onSuccess: () => {
+			navigate('/');
 			changeStatus('Logged Out successfully', 'success');
 			setLoggedIn(false);
-			navigate('/');
 		},
 
 		onError: (error) => {

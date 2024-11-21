@@ -125,10 +125,16 @@
 		@apply border-border;
 	}
 	body {
-		@apply bg-background text-foreground;
+		@apply bg-app_bg_primary text-app_text_primary;
 	}
 }
 
+.gradient1 {
+	@apply bg-gradient-to-r from-app_bg_primary to-app_bg_secondary;
+}
+.gradient2 {
+	@apply bg-gradient-to-r from-app_bg_secondary to-app_bg_secondary_inverse;
+}
 .primary-button {
 	@apply bg-app_btn_primary_bg px-6 py-2 rounded text-white hover:bg-app_btn_primary_hover_bg;
 }

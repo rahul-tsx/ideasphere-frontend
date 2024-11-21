@@ -311,7 +311,7 @@ const CloseIcon = ({ modalId }: { modalId: string }) => {
 	return (
 		<button
 			onClick={closeModal}
-			className='absolute top-14 right-[-50px] group z-40 bg-white dark:bg-neutral-950 rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
+			className='absolute top-14 right-[-50px] group z-40 bg-white rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
@@ -322,7 +322,7 @@ const CloseIcon = ({ modalId }: { modalId: string }) => {
 				strokeWidth='2'
 				strokeLinecap='round'
 				strokeLinejoin='round'
-				className='text-black dark:text-white h-4 w-4 group-hover:scale-125 group-hover:rotate-3 transition duration-200'>
+				className='text-black size-6 group-hover:scale-125 group-hover:rotate-3 transition duration-200'>
 				<path
 					stroke='none'
 					d='M0 0h24v24H0z'
@@ -379,7 +379,7 @@ export const ModalBody = ({
 						<motion.div
 							ref={modalRef}
 							className={cn(
-								' bg-white dark:bg-neutral-950 border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden overflow-y-auto scrollbar-dark ',
+								' bg-white  border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden overflow-y-auto scrollbar-dark ',
 								className
 							)}
 							initial={{

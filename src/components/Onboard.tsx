@@ -16,7 +16,7 @@ const Onboard: FC<OnboardProps> = () => {
 	return (
 		<ModalBody
 			modalId='onboard'
-			className='bg-app_bg_secondary text-app_text_primary'>
+			className='bg-app_bg_secondary  text-app_text_primary'>
 			{/* Toggler Section */}
 			{/* <div className='w-full grid grid-cols-2 text-lg font-semibold'>
 				<motion.button
@@ -55,7 +55,7 @@ const Onboard: FC<OnboardProps> = () => {
 				<motion.div
 					className='absolute top-0 left-0 h-full w-1/2 rounded-lg bg-app_btn_primary_bg'
 					animate={{
-						x: isSignup ? '100%' : '0%', 
+						x: isSignup ? '100%' : '0%',
 					}}
 					transition={{
 						type: 'spring',

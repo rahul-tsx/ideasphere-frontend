@@ -13,27 +13,15 @@ const Navbar: React.FC = () => {
 	const { mutate: logout, isPending } = useLogout();
 	return (
 		<>
-			<nav className='bg-app_bg_primary dark:bg-app_bg_inverse text-app_text_primary p-4'>
-				<header className='py-6 border-b border-app_border_color dark:border-app_border_color_inverse'>
+			<nav className='bg-app_bg_primary text-app_text_primary '>
+				<header className='py-6 px-10 border-b border-app_border_color '>
 					<div className='container mx-auto flex justify-between items-center'>
-						<h1 className='text-3xl font-bold'>IdeaSphere</h1>
-						<div className='hidden md:flex space-x-6'>
-							<Link
-								to={'/'}
-								className='hover:text-gray-400'>
-								Home
-							</Link>
-							{/* <Link
-							to='/courses'
-							className='hover:text-gray-400'>
-							Courses
-						</Link> */}
-							<Link
-								to='/about'
-								className='hover:text-gray-400'>
-								About
-							</Link>
-						</div>
+						<Link
+							to={'/'}
+							className='text-3xl font-bold'>
+							IdeaSphere
+						</Link>
+						<div className='hidden md:flex space-x-6'></div>
 
 						<div className='hidden md:flex space-x-4'>
 							{loggedIn && (

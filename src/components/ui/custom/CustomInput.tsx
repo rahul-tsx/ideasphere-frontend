@@ -71,13 +71,16 @@ const CustomInput = ({
 			break;
 		default:
 			InputComponent = (
-				<input
-					id={name}
-					name={name}
-					type='text'
-					className={`w-full p-2 border border-app_btn_primary_bg rounded-lg outline-none  ${className}`}
-					{...rest}
-				/>
+				<>
+					<input
+						id={name}
+						name={name}
+						type='text'
+						className={`w-full text-app_text_secondary dark:text-app_text_secondary_inverse p-2 border border-app_btn_primary_bg rounded-lg font-semibold outline-none  ${className}`}
+						{...rest}
+					/>
+					{error && <p className='text-red-500 text-sm'>{error.message}</p>}
+				</>
 			);
 			break;
 	}

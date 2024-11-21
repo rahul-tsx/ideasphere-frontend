@@ -2,31 +2,25 @@
 import { useMutation } from '@tanstack/react-query';
 import { signup } from '../../api/auth/signup';
 import axios from 'axios';
-import { useContext } from 'react';
-import StatusContext from '@/context/statusContext';
 import useAuthStore from '@/store/authStore';
 import { useModal } from '../useModal';
-import { redirect, useNavigate } from 'react-router-dom';
+import { useNavigate } from 'react-router-dom';
+import useStatus from '../useStatus';
 
 export const useSignup = () => {
-	const context = useContext(StatusContext);
-
-	if (!context) {
-		throw new Error('useContext must be used within a Provider');
-	}
-
-	const { changeStatus } = context;
-	const { setLoggedIn } = useAuthStore();
+	const changeStatus = useStatus();
+	const { setLoggedIn, setUsername } = useAuthStore();
 	const { closeModal } = useModal('onboard');
 	const navigate = useNavigate();
 
 	return useMutation({
 		mutationFn: signup,
-		onSuccess: () => {
+		onSuccess: (response) => {
 			changeStatus('Signed up successfully', 'success');
+			setUsername(response.data.username);
 			closeModal();
 			setLoggedIn(true);
-			navigate('/about');
+			navigate('/dashboard');
 		},
 		onError: (error) => {
 			if (axios.isAxiosError(error) && error.response) {

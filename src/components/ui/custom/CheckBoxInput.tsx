@@ -24,7 +24,7 @@ const CheckboxInput = ({
 			{options.map((option) => (
 				<label
 					key={option.value}
-					className='flex items-center space-x-2'>
+					className='flex items-center space-x-2 text-app_text_secondary dark:text-app_text_secondary_inverse font-semibold'>
 					<input
 						type='checkbox'
 						id={`${name}-${option.value}`}

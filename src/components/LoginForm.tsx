@@ -17,7 +17,6 @@ const emailSchema = z
 const getformSchema = () =>
 	z.object({
 		email: emailSchema,
-
 		password: z.string({
 			required_error: 'Password is required',
 		}),
@@ -56,7 +55,6 @@ const LoginForm: FC<LoginFormProps> = () => {
 						className=''
 						error={errors.email}
 						name='email'
-						type={'email'}
 						placeholder={'abc@gmail.com'}
 						variant='normal'
 					/>

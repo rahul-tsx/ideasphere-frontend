@@ -11,15 +11,17 @@ export const useLogin = () => {
 	const changeStatus = useStatus();
 
 	const { closeModal } = useModal('onboard');
-	const { setLoggedIn } = useAuthStore();
+	const { setLoggedIn, setUsername } = useAuthStore();
+
 	const navigate = useNavigate();
 	return useMutation({
 		mutationFn: login,
-		onSuccess: () => {
+		onSuccess: (response) => {
 			changeStatus('Logged in successfully', 'success');
 			setLoggedIn(true);
+			setUsername(response.data.username);
 			closeModal();
-			navigate('/about');
+			navigate('/dashboard');
 		},
 
 		onError: (error) => {

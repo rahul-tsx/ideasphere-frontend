@@ -2,7 +2,7 @@ import useAuthStore from '@/store/authStore';
 import client from '../client';
 
 export const checkAuth = async () => {
-	const { setLoggedIn } = useAuthStore.getState();
+	const { setLoggedIn, setUsername } = useAuthStore.getState();
 
 	try {
 		const response = await client.get(`${process.env.VITE_SUB_URL}/auth/me`, {
@@ -10,6 +10,7 @@ export const checkAuth = async () => {
 		});
 
 		setLoggedIn(true);
+		setUsername(response.data.data.username);
 		return response.data;
 	} catch (error) {
 		console.error(error);

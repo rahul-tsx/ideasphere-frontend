@@ -1,7 +1,7 @@
 /** @type {import('tailwindcss').Config} */
 export default {
 	content: ['./index.html', './src/**/*.{js,ts,jsx,tsx}'],
-	darkMode: ['selector', 'class'],
+	darkMode: ['selector'],
 	theme: {
 		extend: {
 			colors: {
@@ -31,7 +31,7 @@ export default {
 				// Border Colors
 				app_border_color: 'var(--border-color)', // Light: #d1d5db, Dark: #3f3f3f
 				app_border_color_inverse: 'var(--border-color-inverse)', // Light: #3f3f3f, Dark: #d1d5db
-
+			
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {

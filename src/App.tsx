@@ -6,7 +6,10 @@ import useCheckAuth from './hooks/auth/useCheckAuth';
 type AppProps = unknown;
 
 const App: FC<AppProps> = () => {
-	useCheckAuth();
+	const { isLoading, } = useCheckAuth();
+	if (isLoading) {
+		return <div>Loading...</div>;
+	}
 
 	return (
 		<>
