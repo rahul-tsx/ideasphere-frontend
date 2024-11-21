@@ -16,15 +16,15 @@ const Onboard: FC<OnboardProps> = () => {
 	return (
 		<ModalBody
 			modalId='onboard'
-			className='bg-app_bg_primary text-app_text_primary'>
+			className='bg-app_bg_secondary text-app_text_primary'>
 			{/* Toggler Section */}
-			<div className='w-full grid grid-cols-2'>
+			{/* <div className='w-full grid grid-cols-2 text-lg font-semibold'>
 				<motion.button
 					onClick={toggleForm}
-					className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+					className={`px-4 py-2 rounded-lg transition-all duration-300 ${
 						!isSignup
-							? 'bg-app_bg_primary border-app_bg_secondary border-b-2'
-							: 'bg-gray-200 text-gray-700'
+							? 'bg-app_btn_primary_bg  text-app_text_primary_inverse '
+							: 'bg-app_bg_secondary '
 					}`}
 					initial={{ scale: 1 }}
 					animate={{
@@ -38,10 +38,10 @@ const Onboard: FC<OnboardProps> = () => {
 
 				<motion.button
 					onClick={toggleForm}
-					className={`px-4 py-2 text-sm font-medium rounded-md transition-all duration-300 ${
+					className={`px-4 py-2 rounded-lg transition-all duration-300 ${
 						isSignup
-							? 'bg-app_bg_primary border-app_bg_secondary border-b-2'
-							: 'bg-gray-200 text-gray-700'
+							? 'bg-app_btn_primary_bg  text-app_text_primary_inverse '
+							: 'bg-app_bg_secondary '
 					}`}
 					initial={{ scale: 1 }}
 					animate={{ scale: isSignup ? 1.05 : 1 }}
@@ -49,9 +49,43 @@ const Onboard: FC<OnboardProps> = () => {
 					transition={{ type: 'spring', stiffness: 300, damping: 20 }}>
 					Sign Up
 				</motion.button>
+			</div> */}
+			<div className='relative w-full grid grid-cols-2 text-lg font-semibold'>
+				{/* Highlight Background */}
+				<motion.div
+					className='absolute top-0 left-0 h-full w-1/2 rounded-lg bg-app_btn_primary_bg'
+					animate={{
+						x: isSignup ? '100%' : '0%', 
+					}}
+					transition={{
+						type: 'spring',
+						stiffness: 300,
+						damping: 20,
+					}}
+				/>
+
+				{/* Login Button */}
+				<button
+					onClick={toggleForm}
+					className={`z-10 px-4 py-2 rounded-lg transition-all duration-300 ${
+						!isSignup
+							? 'text-app_text_primary_inverse'
+							: 'text-app_text_primary'
+					}`}>
+					Login
+				</button>
+
+				{/* Signup Button */}
+				<button
+					onClick={toggleForm}
+					className={`z-10 px-4 py-2 rounded-lg transition-all duration-300 ${
+						isSignup ? 'text-app_text_primary_inverse' : 'text-app_text_primary'
+					}`}>
+					Signup
+				</button>
 			</div>
 			<ModalContent>
-				<div className='w-full max-w-xl mx-auto bg-app_bg_primary p-6'>
+				<div className='w-full max-w-xl mx-auto bg-app_bg_secondary p-6'>
 					<AnimatePresence mode='wait'>
 						{isSignup ? (
 							<motion.div

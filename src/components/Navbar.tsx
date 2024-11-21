@@ -4,9 +4,13 @@ import { useModal } from '@/hooks/useModal';
 import Onboard from './Onboard';
 import { Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
+import useAuthStore from '@/store/authStore';
+import { useLogout } from '@/hooks/auth/useLogout';
 
 const Navbar: React.FC = () => {
 	const { openModal } = useModal('onboard');
+	const { loggedIn } = useAuthStore();
+	const { mutate: logout, isPending } = useLogout();
 	return (
 		<>
 			<nav className='bg-app_bg_primary dark:bg-app_bg_inverse text-app_text_primary p-4'>
@@ -32,11 +36,20 @@ const Navbar: React.FC = () => {
 						</div>
 
 						<div className='hidden md:flex space-x-4'>
-							<button
-								className='px-4 py-2 rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg'
-								onClick={openModal}>
-								Login
-							</button>
+							{loggedIn && (
+								<button
+									className='px-4 py-2 rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg'
+									onClick={() => logout()}>
+									{isPending ? 'Logging Out...' : 'Logout'}
+								</button>
+							)}
+							{!loggedIn && (
+								<button
+									className='px-4 py-2 rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg'
+									onClick={openModal}>
+									Login
+								</button>
+							)}
 
 							<ModeToggle />
 						</div>

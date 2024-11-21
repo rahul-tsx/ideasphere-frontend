@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import CustomInput from './ui/CustomInput';
-import { useSignup } from '@/hooks/useSignup';
+import CustomInput from './ui/custom/CustomInput';
+import { useSignup } from '@/hooks/auth/useSignup';
 
 interface SignupFormProps {}
 
@@ -78,8 +78,8 @@ const SignupForm: FC<SignupFormProps> = () => {
 							className=''
 							error={errors.username}
 							name='name'
-							type={'text'}
 							placeholder={'John Doe'}
+							variant='normal'
 						/>
 					)}
 				/>
@@ -94,8 +94,8 @@ const SignupForm: FC<SignupFormProps> = () => {
 							className=''
 							error={errors.email}
 							name='email'
-							type={'email'}
 							placeholder={'abc@gmail.com'}
+							variant='normal'
 						/>
 					)}
 				/>
@@ -111,7 +111,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 							className=''
 							error={errors.password}
 							name='password'
-							type='password'
+							variant='hidden'
 						/>
 					)}
 				/>
@@ -126,7 +126,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 							className=''
 							error={errors.confirmPassword}
 							name='cpassword'
-							type='password'
+							variant='hidden'
 						/>
 					)}
 				/>
@@ -134,9 +134,8 @@ const SignupForm: FC<SignupFormProps> = () => {
 
 			<button
 				type='submit'
-				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-app_text_primary rounded-lg transition'>
-				{!isPending && `Sign Up`}
-				{isPending && `Loading...`}
+				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-white font-bold text-lg rounded-lg transition'>
+				{isPending ? 'Loading...' : 'Sign Up'}
 			</button>
 		</form>
 	);

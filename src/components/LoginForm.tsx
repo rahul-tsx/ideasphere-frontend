@@ -2,8 +2,8 @@ import { FC } from 'react';
 import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
-import CustomInput from './ui/CustomInput';
-import { useLogin } from '@/hooks/useLogin';
+import CustomInput from './ui/custom/CustomInput';
+import { useLogin } from '@/hooks/auth/useLogin';
 
 interface LoginFormProps {}
 
@@ -58,6 +58,7 @@ const LoginForm: FC<LoginFormProps> = () => {
 						name='email'
 						type={'email'}
 						placeholder={'abc@gmail.com'}
+						variant='normal'
 					/>
 				)}
 			/>
@@ -73,15 +74,16 @@ const LoginForm: FC<LoginFormProps> = () => {
 						className=''
 						error={errors.password}
 						name='password'
-						type='password'
+						variant='hidden'
+						placeholder={'enter your password...'}
 					/>
 				)}
 			/>
 
 			<button
 				type='submit'
-				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-app_text_primary rounded-lg transition'>
-				Login
+				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-white font-bold text-lg  rounded-lg transition'>
+				{isPending ? 'Logging in' : 'Login'}
 			</button>
 		</form>
 	);
