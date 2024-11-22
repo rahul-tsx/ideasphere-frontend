@@ -1,3 +1,4 @@
+import CustomButton from '@/components/ui/custom/CustomButton';
 import { useEffect } from 'react';
 import { useNavigate } from 'react-router-dom';
 
@@ -19,11 +20,14 @@ const NotFoundPage = () => {
 				<p className='mt-4 text-lg'>
 					{`Oops! The page you're looking for doesn't exist.`}
 				</p>
-				<button
+				<CustomButton
+					size='custom'
+					variant='primary'
+					classname='mt-6 px-6 py-3  text-xl font-semibold  '
 					onClick={handleRedirect}
-					className='mt-6 px-6 py-3 bg-app_btn_primary_bg text-black font-semibold rounded hover:bg-app_btn_primary_hover_bg'>
+					type='button'>
 					Go Back to Home
-				</button>
+				</CustomButton>
 			</div>
 		</div>
 	);

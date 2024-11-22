@@ -2,7 +2,7 @@ import About from '@/components/About';
 import Dashboard from '@/pages/Dashboard';
 import Home from '@/pages/Home';
 import NotFoundPage from '@/pages/Notfound';
-import Tweets from '@/pages/Tweets';
+import Tweets from '@/components/Tweets';
 import PrivateRoutes from '@/routes/PrivateRoutes';
 import RootLayout from '@/routes/RootLayout';
 import {

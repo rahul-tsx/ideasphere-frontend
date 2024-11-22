@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import CustomInput from './ui/custom/CustomInput';
 import { useSignup } from '@/hooks/auth/useSignup';
+import CustomButton from './ui/custom/CustomButton';
 
 interface SignupFormProps {}
 
@@ -75,6 +76,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Username'
+							value={undefined}
 							className=''
 							error={errors.username}
 							name='name'
@@ -91,6 +93,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Email'
+							value={undefined}
 							className=''
 							error={errors.email}
 							name='email'
@@ -108,6 +111,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Password'
+							value={undefined}
 							className=''
 							error={errors.password}
 							name='password'
@@ -123,6 +127,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Confirm Password'
+							value={undefined}
 							className=''
 							error={errors.confirmPassword}
 							name='cpassword'
@@ -131,12 +136,13 @@ const SignupForm: FC<SignupFormProps> = () => {
 					)}
 				/>
 			</div>
-
-			<button
+			<CustomButton
 				type='submit'
-				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-white font-bold text-lg rounded-lg transition'>
+				size='custom'
+				variant='primary'
+				classname='w-full p-2 font-bold text-lg transition'>
 				{isPending ? 'Loading...' : 'Sign Up'}
-			</button>
+			</CustomButton>
 		</form>
 	);
 };

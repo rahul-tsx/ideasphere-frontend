@@ -4,6 +4,7 @@ import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import CustomInput from './ui/custom/CustomInput';
 import { useLogin } from '@/hooks/auth/useLogin';
+import CustomButton from './ui/custom/CustomButton';
 
 interface LoginFormProps {}
 
@@ -52,6 +53,7 @@ const LoginForm: FC<LoginFormProps> = () => {
 					<CustomInput
 						{...field}
 						label='Email'
+						value={undefined}
 						className=''
 						error={errors.email}
 						name='email'
@@ -69,6 +71,7 @@ const LoginForm: FC<LoginFormProps> = () => {
 					<CustomInput
 						{...field}
 						label='Password'
+						value={undefined}
 						className=''
 						error={errors.password}
 						name='password'
@@ -77,12 +80,14 @@ const LoginForm: FC<LoginFormProps> = () => {
 					/>
 				)}
 			/>
-
-			<button
+			<CustomButton
 				type='submit'
-				className='w-full bg-app_btn_primary_bg hover:bg-app_btn_primary_hover_bg p-2 text-white font-bold text-lg  rounded-lg transition'>
+				size='custom'
+				variant='primary'
+				classname='w-full p-2 font-bold text-lg transition'>
 				{isPending ? 'Logging in' : 'Login'}
-			</button>
+			</CustomButton>
+		
 		</form>
 	);
 };

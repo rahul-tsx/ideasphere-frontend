@@ -1,3 +1,4 @@
+import CustomButton from '@/components/ui/custom/CustomButton';
 import { useModal } from '@/hooks/useModal';
 import useAuthStore from '@/store/authStore';
 import { motion } from 'framer-motion';
@@ -36,11 +37,14 @@ const Home: FC<HomeProps> = () => {
 						all your inspirations and discoveries in one place, just a click
 						away!"
 					</p>
-					<button
-						className='px-8 py-4 text-xl font-semibold rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg drop-shadow-xl transform hover:scale-105 transition-transform'
-						onClick={handleStartUp}>
+					<CustomButton
+						size='custom'
+						variant='primary'
+						classname='px-8 py-4 text-xl font-semibold transform hover:scale-105 transition-transform'
+						onClick={handleStartUp}
+						type='button'>
 						Get Started Now
-					</button>
+					</CustomButton>
 				</motion.div>
 			</div>
 

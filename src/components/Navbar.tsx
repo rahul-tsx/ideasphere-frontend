@@ -6,6 +6,7 @@ import { Link } from 'react-router-dom';
 import { RxHamburgerMenu } from 'react-icons/rx';
 import useAuthStore from '@/store/authStore';
 import { useLogout } from '@/hooks/auth/useLogout';
+import CustomButton from './ui/custom/CustomButton';
 
 const Navbar: React.FC = () => {
 	const { openModal } = useModal('onboard');
@@ -21,22 +22,27 @@ const Navbar: React.FC = () => {
 							className='text-3xl font-bold'>
 							IdeaSphere
 						</Link>
-						<div className='hidden md:flex space-x-6'></div>
 
-						<div className='hidden md:flex space-x-4'>
+						<div className='hidden md:flex space-x-8 items-center'>
 							{loggedIn && (
-								<button
-									className='px-4 py-2 rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg'
+								<CustomButton
+									// label='Logout'
+									type='button'
+									size='md'
+									variant='primary'
 									onClick={() => logout()}>
 									{isPending ? 'Logging Out...' : 'Logout'}
-								</button>
+								</CustomButton>
 							)}
 							{!loggedIn && (
-								<button
-									className='px-4 py-2 rounded-lg bg-app_btn_primary_bg text-white hover:bg-app_btn_primary_hover_bg'
-									onClick={openModal}>
+								<CustomButton
+									type='button'
+									size='md'
+									variant='primary'
+									onClick={openModal}
+									classname=''>
 									Login
-								</button>
+								</CustomButton>
 							)}
 
 							<ModeToggle />

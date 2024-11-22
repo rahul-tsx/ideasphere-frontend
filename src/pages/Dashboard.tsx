@@ -1,4 +1,5 @@
 import Sidebar from '@/components/Sidebar';
+import CustomButton from '@/components/ui/custom/CustomButton';
 import useAuthStore from '@/store/authStore';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -17,12 +18,20 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 				<div className='flex justify-between gap-x-5'>
 					<p className='font-bold text-2xl'>Welcome {username}</p>
 					<div className='flex gap-x-10'>
-						<button className='p-2 bg-app_btn_primary_bg rounded-xl px-5'>
+						<CustomButton
+							type='button'
+							size='md'
+							variant='primary'
+							classname=''>
 							Add Content
-						</button>
-						<button className='p-2 bg-app_btn_primary_bg rounded-xl px-5'>
+						</CustomButton>
+						<CustomButton
+							type='button'
+							size='md'
+							variant='secondary'
+							classname=''>
 							Share Sphere
-						</button>
+						</CustomButton>
 					</div>
 				</div>
 				<Outlet />

@@ -21,14 +21,14 @@ export function ModeToggle() {
 	return (
 		<button
 			onClick={toggleTheme}
-			className='ring-2 ring-yellow-300 p-3 rounded-full'>
+			className='outline outline-2 p-2 rounded-full h-fit outline-app_btn_primary_bg'>
 			<SunIcon
-				className={`h-[1.2rem] w-[1.2rem] rotate-0  transition-all dark:-rotate-90 ${
+				className={`size-6 rotate-0  transition-all dark:-rotate-90 ${
 					theme === 'dark' ? 'scale-0 hidden' : 'scale-100'
 				}`}
 			/>
 			<MoonIcon
-				className={` h-[1.2rem] w-[1.2rem] rotate-90  transition-all dark:rotate-0  ${
+				className={` size-6 rotate-90  transition-all dark:rotate-0  ${
 					theme === 'dark' ? 'scale-100 ' : 'scale-0 hidden'
 				}`}
 			/>
