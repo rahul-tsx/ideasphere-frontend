@@ -132,8 +132,11 @@
 .gradient1 {
 	@apply bg-gradient-to-r from-app_bg_primary to-app_bg_secondary;
 }
-.gradient2 {
+/* .gradient2 {
 	@apply bg-gradient-to-r from-app_bg_secondary to-app_bg_secondary_inverse;
+} */
+.gradient2 {
+	@apply bg-gradient-to-r from-[#421b1b] to-[#ffeaea] via-[#5e2c2c];
 }
 .primary-button {
 	@apply bg-app_btn_primary_bg px-6 py-2 rounded text-white hover:bg-app_btn_primary_hover_bg;
@@ -142,3 +145,51 @@
 .secondary-button {
 	@apply bg-app_btn_secondary_bg px-6 py-2 rounded text-app_btn_primary_bg hover:bg-app_btn_secondary_hover_bg border border-black;
 }
+.modal {
+	box-shadow: 0px 4px 8px rgba(0, 0, 0, 0.1),
+		/* Soft shadow */ 0px 8px 20px rgba(0, 0, 0, 0.2),
+		/* Medium shadow */ 0px 16px 40px rgba(0, 0, 0, 0.3); /* Deep shadow */
+}
+
+.dropdownStyles {
+	@apply bg-white border border-app_bg_primary hover:bg-app_bg_primary outline-none focus:outline-none ring-0;
+}
+
+.no-scrollbar {
+	/* For Webkit-based browsers (Chrome, Safari, Edge) */
+	-ms-overflow-style: none;  /* IE 10+ */
+	scrollbar-width: none;  /* Firefox */
+  }
+  
+  .no-scrollbar::-webkit-scrollbar {
+	display: none;  /* Hide scrollbar */
+  }
+
+  /* Custom scrollbar for Webkit browsers */
+.custom-scrollbar::-webkit-scrollbar {
+	width: 12px;  /* Set width of the scrollbar */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb {
+	background-color: #4b4b4b; /* Dark grey for thumb */
+	border-radius: 6px;  /* Rounded corners */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background-color: #6a6a6a; /* Slightly lighter grey on hover */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track {
+	background-color: #f1f1f1;  /* Light grey for track */
+	border-radius: 6px; /* Rounded corners */
+  }
+  
+  .custom-scrollbar::-webkit-scrollbar-track:hover {
+	background-color: #e0e0e0; /* Darken track color on hover */
+  }
+  
+  /* Custom scrollbar for Firefox */
+  .custom-scrollbar {
+	scrollbar-width: thin;  /* Thin scrollbar */
+	scrollbar-color: #4b4b4b #f1f1f1; /* Thumb color and track color */
+  }

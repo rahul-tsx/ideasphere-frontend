@@ -1,5 +1,8 @@
+import AddContentModal from '@/components/AddContentModal';
 import Sidebar from '@/components/Sidebar';
+import { Modal } from '@/components/ui/animated-modal';
 import CustomButton from '@/components/ui/custom/CustomButton';
+import { useModal } from '@/hooks/useModal';
 import useAuthStore from '@/store/authStore';
 import { FC } from 'react';
 import { Outlet } from 'react-router-dom';
@@ -8,6 +11,7 @@ interface DashboardProps {}
 
 const Dashboard: FC<DashboardProps> = ({}) => {
 	const { username } = useAuthStore();
+	const { openModal } = useModal('addContent');
 	return (
 		<div className='bg-app_bg_primary flex gap-x-10'>
 			<Sidebar
@@ -22,7 +26,8 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 							type='button'
 							size='md'
 							variant='primary'
-							classname=''>
+							classname=''
+							onClick={() => openModal()}>
 							Add Content
 						</CustomButton>
 						<CustomButton
@@ -36,6 +41,9 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 				</div>
 				<Outlet />
 			</div>
+			
+			<AddContentModal />
+		
 		</div>
 	);
 };

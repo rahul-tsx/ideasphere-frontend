@@ -16,7 +16,7 @@ const Navbar: React.FC = () => {
 		<>
 			<nav className='bg-app_bg_primary text-app_text_primary '>
 				<header className='py-6 px-10 border-b border-app_border_color '>
-					<div className='container mx-auto flex justify-between items-center'>
+					<div className='mx-auto flex justify-between items-center'>
 						<Link
 							to={'/'}
 							className='text-3xl font-bold'>

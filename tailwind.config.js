@@ -31,7 +31,9 @@ export default {
 				// Border Colors
 				app_border_color: 'var(--border-color)', // Light: #d1d5db, Dark: #3f3f3f
 				app_border_color_inverse: 'var(--border-color-inverse)', // Light: #3f3f3f, Dark: #d1d5db
-			
+				backgroundImage: {
+					gradient2: 'linear-gradient(to right, #421b1b, #5e2c2c, #ffeaea)',
+				},
 				background: 'hsl(var(--background))',
 				foreground: 'hsl(var(--foreground))',
 				card: {
@@ -76,4 +78,5 @@ export default {
 		},
 	},
 	plugins: [require('tailwindcss-animate')],
+
 };

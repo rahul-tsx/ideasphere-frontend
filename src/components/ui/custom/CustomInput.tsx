@@ -3,6 +3,7 @@ import RadioInput from './RadioInput';
 import CheckboxInput from './CheckBoxInput';
 import FileInput from './FileInput';
 import { FieldError } from 'react-hook-form';
+import CustomDropdown from './CustomDropdown';
 
 interface Option {
 	label: string;
@@ -12,7 +13,7 @@ interface Option {
 interface CustomInputProps {
 	label?: string;
 	name: string;
-	variant: 'normal' | 'hidden' | 'radio' | 'checkbox' | 'file';
+	variant: 'normal' | 'hidden' | 'radio' | 'checkbox' | 'file' | 'dropdown';
 	options?: Option[];
 	error?: FieldError;
 	className?: string;
@@ -25,6 +26,7 @@ const CustomInput = ({
 	variant,
 	options = [],
 	error,
+	dropDownType = 'single',
 	className = '',
 	...rest
 }: CustomInputProps) => {
@@ -64,6 +66,16 @@ const CustomInput = ({
 			InputComponent = (
 				<FileInput
 					name={name}
+					error={error}
+					{...rest}
+				/>
+			);
+			break;
+		case 'dropdown':
+			InputComponent = (
+				<CustomDropdown
+					name={name}
+					options={options}
 					error={error}
 					{...rest}
 				/>
