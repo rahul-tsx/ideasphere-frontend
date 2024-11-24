@@ -1,6 +1,5 @@
 import AddContentModal from '@/components/AddContentModal';
 import Sidebar from '@/components/Sidebar';
-import { Modal } from '@/components/ui/animated-modal';
 import CustomButton from '@/components/ui/custom/CustomButton';
 import { useModal } from '@/hooks/useModal';
 import useAuthStore from '@/store/authStore';

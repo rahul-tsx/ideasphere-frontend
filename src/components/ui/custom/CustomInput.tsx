@@ -16,6 +16,7 @@ interface CustomInputProps {
 	variant: 'normal' | 'hidden' | 'radio' | 'checkbox' | 'file' | 'dropdown';
 	options?: Option[];
 	error?: FieldError;
+	onChangeValue?: () => void;
 	className?: string;
 	[x: string]: any;
 }
@@ -25,6 +26,7 @@ const CustomInput = ({
 	name,
 	variant,
 	options = [],
+	onChangeValue,
 	error,
 	dropDownType = 'single',
 	className = '',
@@ -75,6 +77,7 @@ const CustomInput = ({
 			InputComponent = (
 				<CustomDropdown
 					name={name}
+					onChange={onChangeValue!}
 					options={options}
 					error={error}
 					{...rest}
@@ -88,8 +91,12 @@ const CustomInput = ({
 						id={name}
 						name={name}
 						type='text'
-						className={`w-full text-app_text_secondary dark:text-app_text_secondary_inverse p-2 border border-app_btn_primary_bg rounded-lg font-semibold outline-none  ${className}`}
 						{...rest}
+						// onChange={(e) => {
+						// 	rest.onChange?.(e);
+						// 	if (rest.onChange) return;
+						// }}
+						className={`w-full text-app_text_secondary dark:text-app_text_secondary_inverse p-2 border border-app_btn_primary_bg rounded-lg font-semibold outline-none  ${className}`}
 					/>
 					{error && <p className='text-red-500 text-sm'>{error.message}</p>}
 				</>

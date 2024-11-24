@@ -1,4 +1,4 @@
-import { FC, useState, useEffect } from 'react';
+import { FC, useState } from 'react';
 import AsyncCreatableSelect from 'react-select/async-creatable';
 import { useTags } from '@/hooks/tags/useTags';
 import { dropdownStyles } from './ui/custom/CustomDropdown';
@@ -9,12 +9,13 @@ interface TagOption {
 }
 interface TagSelectorProps {
 	label: string;
+	value: string[];
+	onChange: (tagId: string[]) => void;
 }
 
-const TagSelector: FC<TagSelectorProps> = ({ label }) => {
+const TagSelector: FC<TagSelectorProps> = ({ label, onChange, value }) => {
 	const { tags, isTagsLoading, createTag, creatingTag } = useTags();
 	const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
-
 
 	const filterTags = (inputValue: string) => {
 		return tags!.filter((i) =>
@@ -42,6 +43,9 @@ const TagSelector: FC<TagSelectorProps> = ({ label }) => {
 	// Update selected tags
 	const handleChange = (newValue: any) => {
 		setSelectedTags(newValue || []);
+		const tagsValue = newValue.map((tag: TagOption) => tag.value);
+		console.log('newValeu', tagsValue);
+		onChange(tagsValue);
 	};
 
 	return (
@@ -50,8 +54,9 @@ const TagSelector: FC<TagSelectorProps> = ({ label }) => {
 			<p>{label}</p>
 			<AsyncCreatableSelect
 				blurInputOnSelect
-				defaultOptions={tags} 
-				loadOptions={promiseOptions} 
+				defaultValue={value.map((id) => ({ value: id, label: id }))}
+				defaultOptions={tags}
+				loadOptions={promiseOptions}
 				isSearchable
 				isMulti
 				onChange={handleChange}

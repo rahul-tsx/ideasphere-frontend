@@ -3,25 +3,19 @@ import { useForm, SubmitHandler, Controller } from 'react-hook-form';
 import { zodResolver } from '@hookform/resolvers/zod';
 import z from 'zod';
 import CustomInput from './ui/custom/CustomInput';
-import { useSignup } from '@/hooks/auth/useSignup';
+
 import CustomButton from './ui/custom/CustomButton';
 import TagSelector from './TagSelector';
+import { CONTENT_TYPES } from '@/assets/constants/data';
+import { convertToCapitialCase } from '@/lib/utility/convertToCapitalCase';
+import { useContent } from '@/hooks/content/useContent';
 
 interface AddContentFormProps {}
 
-const emailSchema = z
-	.string({
-		required_error: 'Email is required',
-	})
-	.email('Please provide a valid email')
-	.trim();
 const tagsSchema = z.array(
-	z
-		.string()
-		.optional()
-		.refine((value) => !value || /^[0-9a-fA-F]{24}$/.test(value), {
-			message: 'Invalid ObjectId format for tags',
-		})
+	z.string().refine((value) => /^[0-9a-fA-F]{24}$/.test(value), {
+		message: 'Invalid ObjectId format for tags',
+	})
 );
 const getformSchema = () =>
 	z.object({
@@ -35,14 +29,7 @@ const getformSchema = () =>
 		link: z
 			.string({ required_error: 'link is required' })
 			.url({ message: 'invalid url' }),
-		type: z.enum([
-			'document',
-			'tweet',
-			'youtube',
-			'article',
-			'blog',
-			'podcasts',
-		]),
+		type: z.enum(CONTENT_TYPES),
 		tags: tagsSchema,
 		note: z.string().optional(),
 	});
@@ -54,11 +41,16 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 		control,
 		formState: { errors },
 	} = useForm<FormSchema>({ resolver: zodResolver(getformSchema()) });
-	// const { mutate: signup, isPending } = useSignup();
+	const { createContent, creatingContent, contentCreationError } = useContent();
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		console.log(data);
+		// const cleanData = {
+		// 	...data,
+		// 	tags: data.tags.filter(Boolean), // Remove undefined
+		// };
+		console.log('Formdata', data);
+		createContent(data);
 	};
 
 	return (
@@ -74,7 +66,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Title'
-							value={undefined}
+							value={field.value}
 							className=''
 							error={errors.title}
 							name='title'
@@ -91,7 +83,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='link'
-							value={undefined}
+							value={field.value}
 							className=''
 							error={errors.link}
 							name='link'
@@ -109,25 +101,31 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 						<CustomInput
 							{...field}
 							label='Content Type'
-							value={undefined}
+							value={field.value}
+							onChange={field.onChange}
 							className=''
 							error={errors.type}
 							name='type'
 							variant='dropdown'
-							options={[
-								'document',
-								'tweet',
-								'youtube',
-								'article',
-								'blog',
-								'podcasts',
-							].map((option) => {
-								return { label: option.toUpperCase(), value: option };
+							options={convertToCapitialCase(CONTENT_TYPES).map((option) => {
+								return { label: option, value: option.toLowerCase() };
 							})}
 						/>
 					)}
 				/>
-				<TagSelector label={'Tags'} />
+				<Controller
+					name='tags'
+					control={control}
+					defaultValue={[]}
+					render={({ field }) => (
+						<TagSelector
+							label='Tags'
+							value={field.value || []}
+							onChange={field.onChange}
+						/>
+					)}
+				/>
+				{/* <TagSelector label={'Tags'} /> */}
 
 				<Controller
 					name='note'
@@ -145,30 +143,13 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 						/>
 					)}
 				/>
-				{/* <Controller
-					name='tags'
-					control={control}
-					rules={{ required: true }}
-					render={({ field }) => (
-						<CustomInput
-							{...field}
-							label='Tags'
-							value={undefined}
-							className=''
-							error={errors.tags}
-							name='tags'
-							variant='normal'
-						/>
-					)}
-				/> */}
 			</div>
 			<CustomButton
 				type='submit'
 				size='custom'
 				variant='primary'
 				classname='w-full p-2 font-bold text-lg transition'>
-				{/* {isPending ? 'Loading...' : 'Sign Up'} */}
-				Add Content
+				{creatingContent ? 'Creating content...' : 'Add Content'}
 			</CustomButton>
 		</form>
 	);

@@ -1,31 +1,5 @@
-// // src/hooks/useLogin.ts
-// import { useMutation } from '@tanstack/react-query';
-// import useStatus from '../useStatus';
-// import axios from 'axios';
-// import { createTag } from '@/api/auth/tags';
-
-// export const useTags = () => {
-// 	const changeStatus = useStatus();
-
-// 	return useMutation({
-// 		mutationFn: createTag,
-
-// 		onError: (error) => {
-// 			if (axios.isAxiosError(error) && error.response) {
-// 				const errorMessage = error.response.data.message || 'Tag not created';
-// 				// console.error('Login error:', errorMessage);
-// 				changeStatus(errorMessage, 'error');
-// 			} else {
-// 				// console.error('An unexpected error occurred:', error);
-// 				changeStatus('An unexpected error occurred:', 'error');
-// 			}
-// 		},
-// 	});
-// };
-
-// src/hooks/useTags.ts
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createTag, getAllTags as fetchTags } from '@/api/auth/tags';
+import { createTag, getAllTags as fetchTags } from '@/api/content/tags';
 import useStatus from '../useStatus';
 import axios from 'axios';
 

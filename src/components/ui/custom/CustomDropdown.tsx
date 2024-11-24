@@ -12,8 +12,7 @@ interface DropdownProps {
 	error?: FieldError;
 	className?: string;
 	placeholder?: string;
-	onChange?: (value: string) => void;
-
+	onChange: (value: string) => void;
 	value?: string;
 }
 
@@ -34,7 +33,7 @@ export const dropdownStyles: StylesConfig<Option> = {
 			boxShadow: '1px solid var(--btn-primary-bg)',
 		},
 	}),
-	option: (styles, { data, isDisabled, isFocused, isSelected }) => {
+	option: (styles, { isDisabled, isFocused, isSelected }) => {
 		return {
 			...styles,
 
@@ -60,7 +59,7 @@ export const dropdownStyles: StylesConfig<Option> = {
 	},
 	input: (styles) => ({ ...styles }),
 	placeholder: (styles) => ({ ...styles }),
-	singleValue: (styles, { data }) => ({ ...styles }),
+	// singleValue: (styles, { data }) => ({ ...styles }),
 };
 
 const CustomDropdown = ({
@@ -74,6 +73,11 @@ const CustomDropdown = ({
 	value,
 	...rest
 }: DropdownProps) => {
+	const handleChange = (newValue: any) => {
+		// const tagsValue = newValue.map((tag: TagOption) => tag.value);
+		// console.log('newValeu content', newValue);
+		onChange(newValue.value);
+	};
 	return (
 		<div className='space-y-2'>
 			<div className='relative '>
@@ -95,15 +99,14 @@ const CustomDropdown = ({
 				<Select
 					className='basic-single'
 					classNamePrefix='select'
-					defaultValue={options[0]}
-					// isDisabled={isDisabled}
-					// isLoading={isLoading}
+					// defaultValue={value || options[0]}
 					isClearable={true}
-					// isRtl={isRtl}
+					onChange={handleChange}
 					isSearchable={true}
 					styles={dropdownStyles}
-					name='color'
+					name={name}
 					options={options}
+					{...rest}
 				/>
 			</div>
 			{error && <p className='text-red-500 text-sm'>{error.message}</p>}
