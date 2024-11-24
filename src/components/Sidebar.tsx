@@ -41,7 +41,11 @@ const Sidebar: FC<SidebarProps> = ({ tags }) => {
 							<Link
 								to={`${tag.toLowerCase()}`}
 								key={index}
-								className={`relative z-10 pl-10 h-12 flex items-center text-app_text_primary hover:text-app_text_hover text-lg font-semibold transition-all duration-300 ${
+								className={`relative z-10 pl-10 h-12 flex items-center text-app_text_primary ${
+									activeIndex === index
+										? 'hover:text-app_text_primary '
+										: 'hover:text-app_text_hover'
+								}  text-lg font-semibold transition-all duration-300 ${
 									activeIndex === index ? 'text-white' : ''
 								}`}>
 								{tag}

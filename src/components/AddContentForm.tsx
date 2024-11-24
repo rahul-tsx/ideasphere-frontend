@@ -45,10 +45,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		// const cleanData = {
-		// 	...data,
-		// 	tags: data.tags.filter(Boolean), // Remove undefined
-		// };
+	
 		console.log('Formdata', data);
 		createContent(data);
 	};

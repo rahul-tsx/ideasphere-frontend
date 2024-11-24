@@ -1,124 +1,77 @@
 @tailwind base;
 @tailwind components;
 @tailwind utilities;
+
+
+
 @layer base {
 	:root {
 		/* Background Colors */
-		--bg-primary: #fff8f4; /* Soft cream */
-		--bg-secondary: #fef4ec; /* Light peach */
-		--bg-dark: #1e1b18; /* Deep warm gray */
-		--bg-primary-inverse: #251e1a; /* Darker warm tone */
-		--bg-secondary-inverse: #3a2e29; /* Muted earthy brown */
+		--bg-primary: #FFF9F5;
+		--bg-secondary: #FFEFEB;
+		--bg-dark: #FFF2E5;
+		--bg-primary-inverse: #2E150C;
+		--bg-secondary-inverse: #4A2417;
 
 		/* Text Colors */
-		--text-primary: #1f1a18; /* Deep warm brown */
-		--text-secondary: #5a463f; /* Muted chocolate */
-		--text-muted: #857671; /* Softer muted brown */
-		--text-hover: #a36f60; /* Warm reddish-brown */
-		--text-primary-inverse: #fef8f4; /* Pale cream */
-		--text-secondary-inverse: #dbc7bf; /* Softer peachy brown */
-		--text-muted-inverse: #b59a92; /* Muted peachy tone */
-		--text-hover-inverse: #ffdbcc; /* Light peach hover */
+		--text-primary: #4A1D0F;
+		--text-secondary: #87432A;
+		--text-muted: #A86D57;
+		--text-hover: #FF6A3D;
+		--text-primary-inverse: #FFF7F2;
+		--text-secondary-inverse: #FFD6C2;
+		--text-muted-inverse: #FFB599;
 
 		/* Button Colors */
-		--btn-primary-bg: #ff6347; /* Tomato red */
-		--btn-primary-hover-bg: #e5573f; /* Darker tomato red */
-		--btn-secondary-bg: #ffffff; /* White */
-		--btn-secondary-hover-bg: #fef4ec; /* Very light peach */
+		--btn-primary-bg: #FF6A3D;
+		--btn-primary-hover-bg: #E66035;
+		--btn-secondary-bg: #FFFFFF;
+		--btn-secondary-hover-bg: #FFEFEB;
+
+		/* Card Colors */
+		--card-bg: #FFF7F0;
+		--card-shadow: #FFE5D6;
+		--card-border: #FFD8C1;
 
 		/* Border Colors */
-		--border-color: #e8dcd6; /* Soft peachy border */
-		--border-color-inverse: #4a3d38; /* Darker warm brown border */
+		--border-color: #FFE1D3;
+		--border-color-inverse: #87432A;
 	}
 
 	.dark {
 		/* Background Colors */
-		--bg-primary: #251e1a; /* Darker warm tone */
-		--bg-secondary: #3a2e29; /* Muted earthy brown */
-		--bg-dark: #1e1b18; /* Deep warm gray */
-		--bg-primary-inverse: #fff8f4; /* Soft cream */
-		--bg-secondary-inverse: #fef4ec; /* Light peach */
+		--bg-primary: #2E150C;
+		--bg-secondary: #4A2417;
+		--bg-dark: #1A0D08;
+		--bg-primary-inverse: #FFF9F5;
+		--bg-secondary-inverse: #FFEFEB;
 
 		/* Text Colors */
-		--text-primary: #fef8f4; /* Pale cream */
-		--text-secondary: #dbc7bf; /* Softer peachy brown */
-		--text-muted: #b59a92; /* Muted peachy tone */
-		--text-hover: #ffdbcc; /* Light peach hover */
-		--text-primary-inverse: #1f1a18; /* Deep warm brown */
-		--text-secondary-inverse: #5a463f; /* Muted chocolate */
-		--text-muted-inverse: #857671; /* Softer muted brown */
-		--text-hover-inverse: #a36f60; /* Warm reddish-brown */
+		--text-primary: #FFF7F2;
+		--text-secondary: #FFD6C2;
+		--text-muted: #FFB599;
+		--text-hover: #FF6A3D;
+		--text-primary-inverse: #4A1D0F;
+		--text-secondary-inverse: #87432A;
+		--text-muted-inverse: #A86D57;
 
 		/* Button Colors */
-		--btn-primary-bg: #ff6347; /* Tomato red */
-		--btn-primary-hover-bg: #e5573f; /* Darker tomato red */
-		--btn-secondary-bg: #4a3d38; /* Warm dark brown */
-		--btn-secondary-hover-bg: #5a463f; /* Slightly lighter warm brown */
+		--btn-primary-bg: #FF6A3D;
+		--btn-primary-hover-bg: #E66035;
+		--btn-secondary-bg: #4A2417;
+		--btn-secondary-hover-bg: #87432A;
+
+		/* Card Colors */
+		--card-bg: #3B2317;
+		--card-shadow: #5A3724;
+		--card-border: #6A3E29;
 
 		/* Border Colors */
-		--border-color: #4a3d38; /* Darker warm brown border */
-		--border-color-inverse: #e8dcd6; /* Soft peachy border */
+		--border-color: #87432A;
+		--border-color-inverse: #FFE1D3;
 	}
 }
-@layer base {
-	:root {
-		/* Background Colors */
-		--bg-primary: #fff5f5; /* Very pale pink */
-		--bg-secondary: #ffeaea; /* Pale pink */
-		--bg-dark: #1e1212; /* Deep red-black */
-		--bg-primary-inverse: #290f0f; /* Dark maroon */
-		--bg-secondary-inverse: #421b1b; /* Muted maroon */
 
-		/* Text Colors */
-		--text-primary: #331010; /* Dark reddish-brown */
-		--text-secondary: #6a2a2a; /* Warm muted red */
-		--text-muted: #946363; /* Softer muted red */
-		--text-hover: #b33d3d; /* Vibrant tomato red */
-		--text-primary-inverse: #ffeaea; /* Pale pink */
-		--text-secondary-inverse: #d9aaaa; /* Muted light red */
-		--text-muted-inverse: #c78c8c; /* Muted rosy tone */
-		--text-hover-inverse: #ffb3b3; /* Light tomato hover */
-
-		/* Button Colors */
-		--btn-primary-bg: #ff453a; /* Bright tomato red */
-		--btn-primary-hover-bg: #e03c33; /* Slightly darker bright red */
-		--btn-secondary-bg: #ffffff; /* White */
-		--btn-secondary-hover-bg: #ffeaea; /* Pale pink */
-
-		/* Border Colors */
-		--border-color: #fcd6d6; /* Light pinkish border */
-		--border-color-inverse: #5e2c2c; /* Dark reddish-brown border */
-	}
-
-	.dark {
-		/* Background Colors */
-		--bg-primary: #290f0f; /* Dark maroon */
-		--bg-secondary: #421b1b; /* Muted maroon */
-		--bg-dark: #1e1212; /* Deep red-black */
-		--bg-primary-inverse: #fff5f5; /* Very pale pink */
-		--bg-secondary-inverse: #ffeaea; /* Pale pink */
-
-		/* Text Colors */
-		--text-primary: #ffeaea; /* Pale pink */
-		--text-secondary: #d9aaaa; /* Muted light red */
-		--text-muted: #c78c8c; /* Muted rosy tone */
-		--text-hover: #ffb3b3; /* Light tomato hover */
-		--text-primary-inverse: #331010; /* Dark reddish-brown */
-		--text-secondary-inverse: #6a2a2a; /* Warm muted red */
-		--text-muted-inverse: #946363; /* Softer muted red */
-		--text-hover-inverse: #b33d3d; /* Vibrant tomato red */
-
-		/* Button Colors */
-		--btn-primary-bg: #ff453a; /* Bright tomato red */
-		--btn-primary-hover-bg: #e03c33; /* Slightly darker bright red */
-		--btn-secondary-bg: #5e2c2c; /* Warm reddish-black */
-		--btn-secondary-hover-bg: #6a2a2a; /* Slightly lighter maroon */
-
-		/* Border Colors */
-		--border-color: #5e2c2c; /* Dark reddish-brown border */
-		--border-color-inverse: #fcd6d6; /* Light pinkish border */
-	}
-}
 
 @layer base {
 	* {
@@ -157,39 +110,39 @@
 
 .no-scrollbar {
 	/* For Webkit-based browsers (Chrome, Safari, Edge) */
-	-ms-overflow-style: none;  /* IE 10+ */
-	scrollbar-width: none;  /* Firefox */
-  }
-  
-  .no-scrollbar::-webkit-scrollbar {
-	display: none;  /* Hide scrollbar */
-  }
+	-ms-overflow-style: none; /* IE 10+ */
+	scrollbar-width: none; /* Firefox */
+}
 
-  /* Custom scrollbar for Webkit browsers */
+.no-scrollbar::-webkit-scrollbar {
+	display: none; /* Hide scrollbar */
+}
+
+/* Custom scrollbar for Webkit browsers */
 .custom-scrollbar::-webkit-scrollbar {
-	width: 12px;  /* Set width of the scrollbar */
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb {
+	width: 12px; /* Set width of the scrollbar */
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb {
 	background-color: #4b4b4b; /* Dark grey for thumb */
-	border-radius: 6px;  /* Rounded corners */
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-thumb:hover {
-	background-color: #6a6a6a; /* Slightly lighter grey on hover */
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-track {
-	background-color: #f1f1f1;  /* Light grey for track */
 	border-radius: 6px; /* Rounded corners */
-  }
-  
-  .custom-scrollbar::-webkit-scrollbar-track:hover {
+}
+
+.custom-scrollbar::-webkit-scrollbar-thumb:hover {
+	background-color: #6a6a6a; /* Slightly lighter grey on hover */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track {
+	background-color: #f1f1f1; /* Light grey for track */
+	border-radius: 6px; /* Rounded corners */
+}
+
+.custom-scrollbar::-webkit-scrollbar-track:hover {
 	background-color: #e0e0e0; /* Darken track color on hover */
-  }
-  
-  /* Custom scrollbar for Firefox */
-  .custom-scrollbar {
-	scrollbar-width: thin;  /* Thin scrollbar */
+}
+
+/* Custom scrollbar for Firefox */
+.custom-scrollbar {
+	scrollbar-width: thin; /* Thin scrollbar */
 	scrollbar-color: #4b4b4b #f1f1f1; /* Thumb color and track color */
-  }
+}

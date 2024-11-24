@@ -1,13 +1,12 @@
 import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
-import { createTag, getAllTags as fetchTags } from '@/api/content/tags';
+import { createTag, getAllTags as fetchTags  } from '@/api/content/tags';
 import useStatus from '../useStatus';
 import axios from 'axios';
-
 
 export const useTags = () => {
 	const changeStatus = useStatus();
 	const queryClient = useQueryClient();
-	
+
 	const {
 		data: tags,
 		isLoading,
@@ -17,7 +16,6 @@ export const useTags = () => {
 		queryKey: ['tags'],
 		queryFn: fetchTags,
 	});
-
 
 	const {
 		mutate: createTagMutation,

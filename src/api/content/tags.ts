@@ -18,3 +18,15 @@ export const getAllTags = async (): Promise<
 	});
 	return tags;
 };
+
+// export const getTag = async (
+// 	tagId: string
+// ): Promise<{ value: string; label: string }> => {
+// 	const response = await client.get(
+// 		`${process.env.VITE_SUB_URL}/tags/${tagId}`
+// 	);
+// 	const tag = response.data.data.map((tag: any) => {
+// 		return { value: tag._id, label: tag.title };
+// 	});
+// 	return tag;
+// };
