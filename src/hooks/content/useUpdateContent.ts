@@ -20,7 +20,7 @@ export const useUpdateContent = () => {
 		}) => updateContent(contentData, contentId),
 
 		onSuccess: () => {
-			changeStatus('Content updated Successfully', 'success');
+			changeStatus('Idea updated Successfully', 'success');
 			closeModal();
 			queryClient.invalidateQueries({ queryKey: ['content'] });
 		},
@@ -28,7 +28,7 @@ export const useUpdateContent = () => {
 		onError: (error) => {
 			if (axios.isAxiosError(error) && error.response) {
 				const errorMessage =
-					error.response.data.message || 'Content not created';
+					error.response.data.message || 'Idea not Updated';
 				changeStatus(errorMessage, 'error');
 			} else {
 				changeStatus('An unexpected error occurred:', 'error');

@@ -1,33 +1,45 @@
 import { ContentType } from '@/types/utilityTypes';
-import { FC } from 'react';
+import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import defaultImage from '@/assets/images/ideasphere.webp';
 import CardSideBar from './custom/CardSidebar';
+import AlertBox from './custom/AlertBox';
+import { useDeleteContent } from '@/hooks/content/useDeleteContent';
 
 interface CardProps {
+	contentId: string;
 	title: string;
 	link: string;
 	note?: string;
 	tags?: { _id: string; title: string }[];
 	type: ContentType;
 	image?: string; // Optional image prop
-	onDelete?: () => void; // Optional delete callback
 	onEdit?: () => void; // Optional edit callback
 	onShare?: () => void; // Optional share callback
 }
 
 const Card: FC<CardProps> = ({
+	contentId,
 	title,
 	link,
 	note,
 	tags,
 	type,
 	image,
-	onDelete,
 	onEdit,
 	onShare,
 }) => {
 	// Renders content based on the type
+	const [alertOpen, setAlertOpen] = useState(false);
+	const { mutate: deleteIdea } = useDeleteContent();
+
+	const triggerAlertBox = () => {
+		setAlertOpen(true);
+	};
+	const handleConfirm = () => {
+		deleteIdea({ contentId });
+	};
+
 	const renderContent = () => {
 		switch (type) {
 			case 'tweet':
@@ -96,9 +108,16 @@ const Card: FC<CardProps> = ({
 				{/* Sidebar with Action Buttons */}
 			</motion.div>
 			<CardSideBar
-				onDelete={onDelete}
+				onDelete={triggerAlertBox}
 				onEdit={onEdit}
 				onShare={onShare}
+			/>
+			<AlertBox
+				open={alertOpen}
+				setOpen={setAlertOpen}
+				onConfirm={handleConfirm}
+				title='Do you wish to delete your idea?'
+				description={`This is destructive and you won't be able to retrieve your idea back`}
 			/>
 		</div>
 	);

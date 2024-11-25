@@ -13,7 +13,7 @@ const Articles: FC<ArticlesProps> = ({}) => {
 	const { openModal: openUpdateModal } =
 		useModal<Omit<ContentSchema, 'link'>>('updateContent');
 
-        filteredContent = content?.filter((unit) => unit.type === 'article') || [];
+	filteredContent = content?.filter((unit) => unit.type === 'article') || [];
 
 	return (
 		<div className='bg-app_bg_secondary min-h-[600px] rounded-xl p-10'>
@@ -29,6 +29,7 @@ const Articles: FC<ArticlesProps> = ({}) => {
 						title={unit.title}
 						type={unit.type}
 						tags={unit.tags}
+						contentId={unit._id}
 						onEdit={() =>
 							openUpdateModal({
 								note: unit.note,

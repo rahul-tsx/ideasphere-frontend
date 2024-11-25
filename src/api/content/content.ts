@@ -23,6 +23,12 @@ export const updateContent = async (
 	);
 	return response.data;
 };
+export const deleteContent = async (contentId: string) => {
+	const response = await client.delete(
+		`${process.env.VITE_SUB_URL}/content/${contentId}`
+	);
+	return response.data;
+};
 
 export const getAllContent = async (): Promise<ContentSchema[]> => {
 	const response = await client.get(`${process.env.VITE_SUB_URL}/content`);

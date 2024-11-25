@@ -29,6 +29,7 @@ const Podcasts: FC<PodcastsProps> = ({}) => {
 						title={unit.title}
 						type={unit.type}
 						tags={unit.tags}
+						contentId={unit._id}
 						onEdit={() =>
 							openUpdateModal({
 								note: unit.note,

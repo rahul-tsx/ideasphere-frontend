@@ -24,6 +24,7 @@ const Tweets: FC<TweetsProps> = ({}) => {
 			{!isContentLoading &&
 				filteredContent!.map((unit) => (
 					<Card
+						contentId={unit._id}
 						link={unit.link}
 						note={unit.note}
 						title={unit.title}
@@ -38,7 +39,7 @@ const Tweets: FC<TweetsProps> = ({}) => {
 								type: unit.type,
 							})
 						}
-						// onEdit={() => console.log('Hello world')}
+					
 					/>
 				))}
 		</div>
