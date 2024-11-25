@@ -1,6 +1,7 @@
 import AddContentModal from '@/components/AddContentModal';
 import Sidebar from '@/components/Sidebar';
 import CustomButton from '@/components/ui/custom/CustomButton';
+import UpdateContentModal from '@/components/updateContentModal';
 import { useModal } from '@/hooks/useModal';
 import useAuthStore from '@/store/authStore';
 import { FC } from 'react';
@@ -40,9 +41,9 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 				</div>
 				<Outlet />
 			</div>
-			
+
 			<AddContentModal />
-		
+			<UpdateContentModal />
 		</div>
 	);
 };

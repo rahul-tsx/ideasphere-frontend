@@ -2,7 +2,6 @@ import { ContentType } from '@/types/utilityTypes';
 import { FC } from 'react';
 import { motion } from 'framer-motion';
 import defaultImage from '@/assets/images/ideasphere.webp';
-import { FaTrash, FaEdit, FaShareAlt } from 'react-icons/fa';
 import CardSideBar from './custom/CardSidebar';
 
 interface CardProps {
@@ -94,27 +93,6 @@ const Card: FC<CardProps> = ({
 				</div>
 				{note && <p className='mt-4 text-app_text_secondary text-sm'>{note}</p>}
 
-				{/* Action icons for edit and share
-        <div className='flex justify-between items-center mt-4'>
-            <button
-                onClick={onEdit}
-                className='bg-blue-500 text-white rounded-full p-2 hover:bg-blue-600 transition'>
-                <FaEdit />
-            </button>
-            
-                <button
-                    onClick={onDelete}
-                    className='absolute top-4 right-4 bg-red-500 text-white rounded-full p-2 hover:bg-red-600 transition'>
-                    <FaTrash />
-                </button>
-            
-
-            <button
-                onClick={onShare}
-                className='bg-green-500 text-white rounded-full p-2 hover:bg-green-600 transition'>
-                <FaShareAlt />
-            </button>
-        </div> */}
 				{/* Sidebar with Action Buttons */}
 			</motion.div>
 			<CardSideBar

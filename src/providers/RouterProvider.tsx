@@ -1,8 +1,12 @@
 import About from '@/components/About';
+import Articles from '@/pages/Articles';
+import Blogs from '@/pages/Blogs';
 import Dashboard from '@/pages/Dashboard';
 import Home from '@/pages/Home';
 import NotFoundPage from '@/pages/Notfound';
-import Tweets from '@/components/Tweets';
+import Podcasts from '@/pages/Podcasts';
+import Tweets from '@/pages/Tweets';
+import Youtube from '@/pages/Youtube';
 import PrivateRoutes from '@/routes/PrivateRoutes';
 import RootLayout from '@/routes/RootLayout';
 import {
@@ -47,19 +51,19 @@ const router = createBrowserRouter([
 							},
 							{
 								path: 'podcasts',
-								element: <Tweets />,
+								element: <Podcasts/>,
 							},
 							{
 								path: 'blogs',
-								element: <Tweets />,
+								element: <Blogs />,
 							},
 							{
 								path: 'articles',
-								element: <Tweets />,
+								element: <Articles />,
 							},
 							{
 								path: 'youtube',
-								element: <Tweets />,
+								element: <Youtube />,
 							},
 							{
 								path: 'friends',

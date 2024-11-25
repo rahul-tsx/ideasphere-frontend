@@ -9,13 +9,18 @@ interface TagOption {
 }
 interface TagSelectorProps {
 	label: string;
-	value: string[];
+	value: { _id: string; title: string }[];
 	onChange: (tagId: string[]) => void;
 }
 
 const TagSelector: FC<TagSelectorProps> = ({ label, onChange, value }) => {
 	const { tags, isTagsLoading, createTag, creatingTag } = useTags();
-	const [selectedTags, setSelectedTags] = useState<TagOption[]>([]);
+	const [selectedTags, setSelectedTags] = useState<TagOption[]>(
+		value.map((val) => ({
+			value: val._id,
+			label: val.title,
+		})) || []
+	);
 
 	const filterTags = (inputValue: string) => {
 		return tags!.filter((i) =>
@@ -54,7 +59,10 @@ const TagSelector: FC<TagSelectorProps> = ({ label, onChange, value }) => {
 			<p>{label}</p>
 			<AsyncCreatableSelect
 				blurInputOnSelect
-				defaultValue={value.map((id) => ({ value: id, label: id }))}
+				defaultValue={value.map((val) => ({
+					value: val._id,
+					label: val.title,
+				}))}
 				defaultOptions={tags}
 				loadOptions={promiseOptions}
 				isSearchable

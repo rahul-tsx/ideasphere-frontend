@@ -13,7 +13,7 @@ interface DropdownProps {
 	className?: string;
 	placeholder?: string;
 	onChange: (value: string) => void;
-	value?: string;
+	value?: Option;
 }
 
 export const dropdownStyles: StylesConfig<Option> = {
@@ -99,7 +99,7 @@ const CustomDropdown = ({
 				<Select
 					className='basic-single'
 					classNamePrefix='select'
-					// defaultValue={value || options[0]}
+					defaultValue={value}
 					isClearable={true}
 					onChange={handleChange}
 					isSearchable={true}

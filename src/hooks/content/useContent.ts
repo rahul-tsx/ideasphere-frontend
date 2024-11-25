@@ -37,6 +37,7 @@ export const useContent = () => {
 		},
 		onSuccess: () => {
 			closeModal();
+			changeStatus('Content Added Successfully', 'success');
 			queryClient.invalidateQueries({ queryKey: ['content'] });
 		},
 	});
