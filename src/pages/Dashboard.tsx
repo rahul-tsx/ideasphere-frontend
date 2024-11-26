@@ -29,7 +29,7 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 	});
 
 	return (
-		<div className='bg-app_bg_primary flex gap-x-1'>
+		<div className='bg-app_bg_primary flex '>
 			<Sidebar
 				tags={['Tweets', 'Podcasts', 'Blogs', 'Articles', 'Youtube', 'Shared']}
 			/>
