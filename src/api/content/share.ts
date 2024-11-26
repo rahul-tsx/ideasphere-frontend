@@ -24,9 +24,9 @@ export const toggleSphereVisibility = async (
 	console.log(response.data.data);
 	return response.data.data;
 };
-// export const copySphere = async (hash: string) => {
-// 	const response = await client.post(
-// 		`${process.env.VITE_SUB_URL}/content/${hash}/copy`
-// 	);
-// 	return response.data.data;
-// };
+export const copySphere = async (username: string, hash: string) => {
+	const response = await client.post(
+		`${process.env.VITE_SUB_URL}/shared/${username}/${hash}/copy`
+	);
+	return response.data.data;
+};

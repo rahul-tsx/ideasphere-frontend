@@ -2,12 +2,13 @@ import { FC, useEffect, useState } from 'react';
 import CustomButton from '@/components/ui/custom/CustomButton';
 import { CustomInputBox } from '@/components/ui/custom/CustomInputBox';
 import { linkValidator } from '@/validators/linkValidator';
-import { CgSearch } from 'react-icons/cg';
+import { CgCopy, CgSearch } from 'react-icons/cg';
 import { useFetchSharedIdea } from '@/hooks/content/useFetchSharedIdea';
 import Card from '@/components/ui/Card';
 import { useFetchSharedSphere } from '@/hooks/sphere/useFetchSharedSphere';
 import useStatus from '@/hooks/useStatus';
 import axios from 'axios';
+import { useCopySharedSphere } from '@/hooks/sphere/useCopySharedSphere';
 
 interface SharedProps {}
 
@@ -31,7 +32,7 @@ const Shared: FC<SharedProps> = ({}) => {
 	) {
 		hash2 = validationResult.hash;
 	}
-	// const hash = validationResult?.username ? validationResult?.hash : null;
+
 	const changeStatus = useStatus();
 
 	const { data: idea, isLoading: isIdeaLoading } = useFetchSharedIdea(hash2);
@@ -40,6 +41,7 @@ const Shared: FC<SharedProps> = ({}) => {
 		isLoading: isSphereLoading,
 		error,
 	} = useFetchSharedSphere(username, hash1);
+	const { mutate: copySphere } = useCopySharedSphere();
 	
 	useEffect(() => {
 		if (error) {
@@ -76,26 +78,41 @@ const Shared: FC<SharedProps> = ({}) => {
 
 	return (
 		<>
-			<div className='flex items-center justify-center w-full space-x-5'>
-				<CustomInputBox
-					name='search'
-					isClearable
-					//@ts-ignore
-					value={inputValue}
-					onChangeValue={handleChange}
-					error={validationError}
-					placeholder='Add your link'
-					className='lg:max-w-[40%] max-w-fit'
-				/>
-				<CustomButton
-					size='custom'
-					variant='primary'
-					classname='flex items-center justify-center gap-x-3'
-					type='button'
-					onClick={handleSearch}>
-					<CgSearch size={20} />
-					<p>Search</p>
-				</CustomButton>
+			<div className='flex items-center justify-between w-full  '>
+				<div className='flex flex-grow  space-x-5  items-center justify-center'>
+					<CustomInputBox
+						name='search'
+						isClearable
+						//@ts-ignore
+						value={inputValue}
+						onChangeValue={handleChange}
+						error={validationError}
+						placeholder='Add your link'
+						className='lg:max-w-[40%] max-w-fit'
+					/>
+
+					<CustomButton
+						size='custom'
+						variant='primary'
+						classname='flex items-center justify-center gap-x-3'
+						type='button'
+						onClick={handleSearch}>
+						<CgSearch size={20} />
+						<p>Search</p>
+					</CustomButton>
+				</div>
+
+				{sphere && sphere.length > 0 && (
+					<CustomButton
+						size='custom'
+						variant='secondary'
+						classname='flex flex-shrink-0 items-center justify-center gap-x-3'
+						type='button'
+						onClick={() => copySphere({ username:username!, hash:hash1! })}>
+						<CgCopy size={20} />
+						<p>Copy Sphere</p>
+					</CustomButton>
+				)}
 			</div>
 
 			<div className='ideaContainers'>
