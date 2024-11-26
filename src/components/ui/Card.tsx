@@ -7,6 +7,7 @@ import AlertBox from './custom/AlertBox';
 import { useDeleteContent } from '@/hooks/content/useDeleteContent';
 import { useShareContent } from '@/hooks/content/useShareContent';
 import useAuthStore from '@/store/authStore';
+import { useCopySharedContent } from '@/hooks/content/useCopySharedIdea';
 
 interface CardProps {
 	contentId: string;
@@ -37,6 +38,7 @@ const Card: FC<CardProps> = ({
 	const { mutate: deleteIdea } = useDeleteContent();
 	const { data: hash } = useShareContent(contentId);
 	const { userId } = useAuthStore();
+	
 
 	const triggerAlertBox = () => {
 		setAlertOpen(true);
@@ -116,6 +118,7 @@ const Card: FC<CardProps> = ({
 				owner={userId === authorId}
 				onDelete={triggerAlertBox}
 				onEdit={onEdit}
+				
 				shareAbleHash={hash}
 			/>
 

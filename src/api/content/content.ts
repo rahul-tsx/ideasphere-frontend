@@ -48,3 +48,9 @@ export const fetchIdea = async (hash: string): Promise<FetchedIdeaSchema> => {
 	);
 	return response.data.data;
 };
+export const copyIdea = async (hash: string) => {
+	const response = await client.post(
+		`${process.env.VITE_SUB_URL}/content/${hash}/copy`
+	);
+	return response.data.data;
+};

@@ -4,12 +4,11 @@ import { motion } from 'framer-motion';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useStatus from '@/hooks/useStatus';
 import { getHostname } from '@/lib/utility/getHostname';
-import { escapeSlashInHash } from '@/lib/utility/escapeSlashInHash';
+import { useCopySharedContent } from '@/hooks/content/useCopySharedIdea';
 
 interface CardSideBarProps {
 	onDelete?: () => void;
 	onEdit?: () => void;
-	onCopy?: () => void;
 	shareAbleHash: string;
 	owner: boolean;
 }
@@ -17,19 +16,18 @@ interface CardSideBarProps {
 const CardSideBar: FC<CardSideBarProps> = ({
 	onDelete,
 	onEdit,
-	onCopy,
+
 	shareAbleHash,
 	owner,
 }) => {
 	const changeStatus = useStatus();
+	const { mutate: copyIdea } = useCopySharedContent();
 	const hostname = getHostname();
 	if (!shareAbleHash) {
 		return;
 	}
 
-	const shareableLink = `http://${hostname}:${
-		process.env.VITE_FRONTEND_PORT
-	}/dashboard/shared/${escapeSlashInHash(shareAbleHash)}`;
+	const shareableLink = `http://${hostname}:${process.env.VITE_FRONTEND_PORT}/dashboard/shared/${shareAbleHash}`;
 	return (
 		<motion.div
 			className='z-10 absolute top-3 -right-4  '
@@ -59,7 +57,7 @@ const CardSideBar: FC<CardSideBarProps> = ({
 				)}
 				{!owner && (
 					<button
-						onClick={onCopy}
+						onClick={() => copyIdea({ hash: shareAbleHash })}
 						className='bg-yellow-500 text-white rounded-full p-2 hover:bg-yellow-600 transition'>
 						<FaCopy />
 					</button>

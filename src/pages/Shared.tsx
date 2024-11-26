@@ -1,4 +1,4 @@
-import { FC, useEffect, useState } from 'react';
+import { FC, useState } from 'react';
 import CustomButton from '@/components/ui/custom/CustomButton';
 import { CustomInputBox } from '@/components/ui/custom/CustomInputBox';
 import { linkValidator } from '@/validators/linkValidator';
@@ -9,20 +9,19 @@ import Card from '@/components/ui/Card';
 interface SharedProps {}
 
 const Shared: FC<SharedProps> = ({}) => {
-	// State to store validation results and input value
 	const [inputValue, setInputValue] = useState('');
 	const [validationResult, setValidationResult] = useState<{
 		username: string | null;
 		hash: string;
 	} | null>(null);
-	const [validationError, setValidationError] = useState<any>(null); // Store the result of linkValidator
+	const [validationError, setValidationError] = useState<any>(null);
 	const hash = validationResult?.hash || null;
 	const { data, isLoading, isError } = useFetchSharedIdea(hash);
 
-	console.log(data ? data : false);
+
 	const handleChange = (link: string) => {
-		setInputValue(link); // Update input value
-		console.log('link', link);
+		setInputValue(link); 
+		
 	};
 
 	const handleSearch = () => {
@@ -33,7 +32,6 @@ const Shared: FC<SharedProps> = ({}) => {
 				// setInputValue(hash);
 				setValidationResult({ username: null, hash: hash });
 
-				console.log('fetched data', data);
 			} else {
 				// setInputValue(`/${username}/${hash}`);
 				setValidationResult({ username, hash });
@@ -43,7 +41,7 @@ const Shared: FC<SharedProps> = ({}) => {
 				.map((issue) => issue.message)
 				.join(', ');
 			setValidationError(errorMessages);
-			console.log('Validation Error:', errorMessages);
+			
 		}
 	};
 
@@ -54,9 +52,9 @@ const Shared: FC<SharedProps> = ({}) => {
 					name='search'
 					isClearable
 					//@ts-ignore
-					value={inputValue} // Bind the value to the state
-					onChangeValue={handleChange} // Handle input change
-					error={validationError} // Show error if validation failed
+					value={inputValue} 
+					onChangeValue={handleChange} 
+					error={validationError} 
 					placeholder='Add your link'
 					className='lg:max-w-[40%] max-w-fit'
 				/>
@@ -65,7 +63,7 @@ const Shared: FC<SharedProps> = ({}) => {
 					variant='primary'
 					classname='flex items-center justify-center gap-x-3'
 					type='button'
-					onClick={handleSearch} // Trigger search on button click
+					onClick={handleSearch} 
 				>
 					<CgSearch size={20} />
 					<p>Search</p>
