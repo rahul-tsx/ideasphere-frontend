@@ -1,10 +1,13 @@
-import { FC, useState } from 'react';
+import { FC, useEffect, useState } from 'react';
 import CustomButton from '@/components/ui/custom/CustomButton';
 import { CustomInputBox } from '@/components/ui/custom/CustomInputBox';
 import { linkValidator } from '@/validators/linkValidator';
 import { CgSearch } from 'react-icons/cg';
 import { useFetchSharedIdea } from '@/hooks/content/useFetchSharedIdea';
 import Card from '@/components/ui/Card';
+import { useFetchSharedSphere } from '@/hooks/sphere/useFetchSharedSphere';
+import useStatus from '@/hooks/useStatus';
+import axios from 'axios';
 
 interface SharedProps {}
 
@@ -15,13 +18,41 @@ const Shared: FC<SharedProps> = ({}) => {
 		hash: string;
 	} | null>(null);
 	const [validationError, setValidationError] = useState<any>(null);
-	const hash = validationResult?.hash || null;
-	const { data, isLoading, isError } = useFetchSharedIdea(hash);
+	let username = null;
+	let hash1 = null;
+	let hash2 = null;
+	if (validationResult && validationResult.username && validationResult.hash) {
+		username = validationResult.username;
+		hash1 = validationResult.hash;
+	} else if (
+		validationResult &&
+		validationResult.hash &&
+		!validationResult.username
+	) {
+		hash2 = validationResult.hash;
+	}
+	// const hash = validationResult?.username ? validationResult?.hash : null;
+	const changeStatus = useStatus();
 
-
+	const { data: idea, isLoading: isIdeaLoading } = useFetchSharedIdea(hash2);
+	const {
+		data: sphere,
+		isLoading: isSphereLoading,
+		error,
+	} = useFetchSharedSphere(username, hash1);
+	
+	useEffect(() => {
+		if (error) {
+			if (axios.isAxiosError(error) && error.response) {
+				const errorMessage = error.response.data.message || 'Idea not Deleted';
+				changeStatus(errorMessage, 'error');
+			} else {
+				changeStatus('An unexpected error occurred:', 'error');
+			}
+		}
+	}, [error]);
 	const handleChange = (link: string) => {
-		setInputValue(link); 
-		
+		setInputValue(link);
 	};
 
 	const handleSearch = () => {
@@ -31,7 +62,6 @@ const Shared: FC<SharedProps> = ({}) => {
 			if (username === 'shared') {
 				// setInputValue(hash);
 				setValidationResult({ username: null, hash: hash });
-
 			} else {
 				// setInputValue(`/${username}/${hash}`);
 				setValidationResult({ username, hash });
@@ -41,7 +71,6 @@ const Shared: FC<SharedProps> = ({}) => {
 				.map((issue) => issue.message)
 				.join(', ');
 			setValidationError(errorMessages);
-			
 		}
 	};
 
@@ -52,9 +81,9 @@ const Shared: FC<SharedProps> = ({}) => {
 					name='search'
 					isClearable
 					//@ts-ignore
-					value={inputValue} 
-					onChangeValue={handleChange} 
-					error={validationError} 
+					value={inputValue}
+					onChangeValue={handleChange}
+					error={validationError}
 					placeholder='Add your link'
 					className='lg:max-w-[40%] max-w-fit'
 				/>
@@ -63,26 +92,42 @@ const Shared: FC<SharedProps> = ({}) => {
 					variant='primary'
 					classname='flex items-center justify-center gap-x-3'
 					type='button'
-					onClick={handleSearch} 
-				>
+					onClick={handleSearch}>
 					<CgSearch size={20} />
 					<p>Search</p>
 				</CustomButton>
 			</div>
 
-			<div className='bg-app_bg_secondary min-h-[600px] rounded-xl p-10'>
-				{isLoading && <p>Loading...</p>}
-				{!isLoading && !data && <p>No Content Found </p>}
-				{data && (
+			<div className='ideaContainers'>
+				{isIdeaLoading && <p>Loading...</p>}
+
+				{!isIdeaLoading &&
+					!idea &&
+					!isSphereLoading &&
+					(!sphere || sphere.length === 0) && <p>No Content Found </p>}
+				{idea && (
 					<Card
-						contentId={data._id}
-						link={data.link}
-						title={data.title}
-						type={data.type}
-						authorId={data.authorId}
-						tags={data.tags}
+						contentId={idea._id}
+						link={idea.link}
+						title={idea.title}
+						type={idea.type}
+						authorId={idea.authorId}
+						tags={idea.tags}
 					/>
 				)}
+				{isSphereLoading && <p>Loading...</p>}
+
+				{sphere &&
+					sphere.map((idea) => (
+						<Card
+							contentId={idea._id}
+							link={idea.link}
+							title={idea.title}
+							type={idea.type}
+							authorId={idea.authorId}
+							tags={idea.tags}
+						/>
+					))}
 			</div>
 		</>
 	);

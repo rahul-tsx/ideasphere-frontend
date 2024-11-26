@@ -2,76 +2,77 @@
 @tailwind components;
 @tailwind utilities;
 
-
-
 @layer base {
 	:root {
 		/* Background Colors */
-		--bg-primary: #FFF9F5;
-		--bg-secondary: #FFEFEB;
-		--bg-dark: #FFF2E5;
-		--bg-primary-inverse: #2E150C;
-		--bg-secondary-inverse: #4A2417;
+		--bg-primary: #fff9f5;
+		--bg-secondary: #ffefeb;
+		--bg-dark: #fff2e5;
+		--bg-primary-inverse: #2e150c;
+		--bg-secondary-inverse: #4a2417;
 
 		/* Text Colors */
-		--text-primary: #4A1D0F;
-		--text-secondary: #87432A;
-		--text-muted: #A86D57;
-		--text-hover: #FF6A3D;
-		--text-primary-inverse: #FFF7F2;
-		--text-secondary-inverse: #FFD6C2;
-		--text-muted-inverse: #FFB599;
+		--text-primary: #4a1d0f;
+		--text-secondary: #87432a;
+		--text-muted: #a86d57;
+		--text-hover: #ff6a3d;
+		--text-primary-inverse: #fff7f2;
+		--text-secondary-inverse: #ffd6c2;
+		--text-muted-inverse: #ffb599;
 
 		/* Button Colors */
-		--btn-primary-bg: #FF6A3D;
-		--btn-primary-hover-bg: #E66035;
-		--btn-secondary-bg: #FFFFFF;
-		--btn-secondary-hover-bg: #FFEFEB;
+		--btn-primary-bg: #ff6a3d;
+		--btn-primary-hover-bg: #e66035;
+		--btn-secondary-bg: #ffffff;
+		--btn-secondary-hover-bg: #ffefeb;
 
 		/* Card Colors */
-		--card-bg: #FFF7F0;
-		--card-shadow: #FFE5D6;
-		--card-border: #FFD8C1;
+		--card-bg: #fff7f0;
+		--card-shadow: #ffe5d6;
+		--card-border: #ffd8c1;
 
 		/* Border Colors */
-		--border-color: #FFE1D3;
-		--border-color-inverse: #87432A;
+		--border-color: #ffe1d3;
+		--border-color-inverse: #87432a;
 	}
 
 	.dark {
 		/* Background Colors */
-		--bg-primary: #2E150C;
-		--bg-secondary: #4A2417;
-		--bg-dark: #1A0D08;
-		--bg-primary-inverse: #FFF9F5;
-		--bg-secondary-inverse: #FFEFEB;
+		--bg-primary: #2e150c;
+		--bg-secondary: #4a2417;
+		--bg-dark: #1a0d08;
+		--bg-primary-inverse: #fff9f5;
+		--bg-secondary-inverse: #ffefeb;
 
 		/* Text Colors */
-		--text-primary: #FFF7F2;
-		--text-secondary: #FFD6C2;
-		--text-muted: #FFB599;
-		--text-hover: #FF6A3D;
-		--text-primary-inverse: #4A1D0F;
-		--text-secondary-inverse: #87432A;
-		--text-muted-inverse: #A86D57;
+		--text-primary: #fff7f2;
+		--text-secondary: #ffd6c2;
+		--text-muted: #ffb599;
+		--text-hover: #ff6a3d;
+		--text-primary-inverse: #4a1d0f;
+		--text-secondary-inverse: #87432a;
+		--text-muted-inverse: #a86d57;
 
 		/* Button Colors */
-		--btn-primary-bg: #FF6A3D;
-		--btn-primary-hover-bg: #E66035;
-		--btn-secondary-bg: #4A2417;
-		--btn-secondary-hover-bg: #87432A;
+		--btn-primary-bg: #ff6a3d;
+		--btn-primary-hover-bg: #e66035;
+		--btn-secondary-bg: #4a2417;
+		--btn-secondary-hover-bg: #87432a;
 
 		/* Card Colors */
-		--card-bg: #3B2317;
-		--card-shadow: #5A3724;
-		--card-border: #6A3E29;
+		--card-bg: #3b2317;
+		--card-shadow: #5a3724;
+		--card-border: #6a3e29;
 
 		/* Border Colors */
-		--border-color: #87432A;
-		--border-color-inverse: #FFE1D3;
+		--border-color: #87432a;
+		--border-color-inverse: #ffe1d3;
 	}
 }
 
+.ideaContainers {
+	@apply bg-app_bg_secondary min-h-[75vh] rounded-xl p-10 grid grid-cols-3 gap-5 gap-x-14;
+}
 
 @layer base {
 	* {

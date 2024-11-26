@@ -95,7 +95,7 @@ const CloseIcon = ({ modalId }: { modalId: string }) => {
 	return (
 		<button
 			onClick={closeModal}
-			className='absolute top-14 right-[-50px] group z-40 bg-white rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
+			className='absolute top-14 right-[-50px] group z-[50] bg-white rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
@@ -154,7 +154,7 @@ export const ModalBody = ({
 						opacity: 0,
 						backdropFilter: 'blur(0px)',
 					}}
-					className='fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-50'>
+					className='fixed [perspective:800px] [transform-style:preserve-3d] inset-0 h-full w-full  flex items-center justify-center z-[55]'>
 					<Overlay />
 					<motion.div
 						className={cn(
@@ -163,7 +163,7 @@ export const ModalBody = ({
 						<motion.div
 							ref={modalRef}
 							className={cn(
-								' bg-white  border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-50 flex flex-col flex-1 overflow-hidden overflow-y-auto scrollbar-dark ',
+								' bg-white  border border-transparent dark:border-neutral-800 md:rounded-2xl relative z-[55] flex flex-col flex-1 overflow-hidden overflow-y-auto scrollbar-dark ',
 								className
 							)}
 							initial={{
@@ -240,6 +240,6 @@ const Overlay = ({ className }: { className?: string }) => {
 				opacity: 0,
 				backdropFilter: 'blur(0px)',
 			}}
-			className={`fixed inset-0 h-full w-full bg-mybackground-dark bg-opacity-50 z-55 ${className}`}></motion.div>
+			className={`fixed inset-0 h-full w-full bg-mybackground-dark bg-opacity-50 z-[50] ${className}`}></motion.div>
 	);
 };

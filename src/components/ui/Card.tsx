@@ -38,7 +38,6 @@ const Card: FC<CardProps> = ({
 	const { mutate: deleteIdea } = useDeleteContent();
 	const { data: hash } = useShareContent(contentId);
 	const { userId } = useAuthStore();
-	
 
 	const triggerAlertBox = () => {
 		setAlertOpen(true);
@@ -84,7 +83,7 @@ const Card: FC<CardProps> = ({
 	};
 
 	return (
-		<div className='relative max-w-[30%] '>
+		<div className='relative max-w-[90%]'>
 			<motion.div
 				className=' bg-app_card_primary_bg text-app_text_primary shadow-app_card_primaryshadow border-2 border-app_card_primaryborder shadow-lg rounded-lg p-6 relative overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 z-20'
 				initial={{ opacity: 0, y: 30 }}
@@ -118,7 +117,6 @@ const Card: FC<CardProps> = ({
 				owner={userId === authorId}
 				onDelete={triggerAlertBox}
 				onEdit={onEdit}
-				
 				shareAbleHash={hash}
 			/>
 

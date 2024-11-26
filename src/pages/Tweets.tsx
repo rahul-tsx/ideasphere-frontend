@@ -16,7 +16,7 @@ const Tweets: FC<TweetsProps> = ({}) => {
 	filteredContent = content?.filter((unit) => unit.type === 'tweet') || [];
 
 	return (
-		<div className='bg-app_bg_secondary min-h-[600px] rounded-xl p-10'>
+		<div className='ideaContainers'>
 			{isContentLoading && 'Loading...'}
 			{!isContentLoading && filteredContent.length === 0 && (
 				<div>No Ideas Found</div>

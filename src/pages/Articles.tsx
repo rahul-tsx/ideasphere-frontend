@@ -16,11 +16,57 @@ const Articles: FC<ArticlesProps> = ({}) => {
 	filteredContent = content?.filter((unit) => unit.type === 'article') || [];
 
 	return (
-		<div className='bg-app_bg_secondary min-h-[600px] rounded-xl p-10'>
+		<div className='ideaContainers'>
 			{isContentLoading && 'Loading...'}
 			{!isContentLoading && filteredContent.length === 0 && (
 				<div>No Ideas Found</div>
 			)}
+			{!isContentLoading &&
+				filteredContent!.map((unit) => (
+					<Card
+						link={unit.link}
+						note={unit.note}
+						title={unit.title}
+						type={unit.type}
+						tags={unit.tags}
+						contentId={unit._id}
+						authorId={unit.authorId}
+						onEdit={() =>
+							openUpdateModal({
+								note: unit.note,
+								tags: unit.tags,
+								_id: unit._id,
+								title: unit.title,
+								type: unit.type,
+								authorId: unit.authorId,
+							})
+						}
+						// onEdit={() => console.log('Hello world')}
+					/>
+				))}
+			{!isContentLoading &&
+				filteredContent!.map((unit) => (
+					<Card
+						link={unit.link}
+						note={unit.note}
+						title={unit.title}
+						type={unit.type}
+						tags={unit.tags}
+						contentId={unit._id}
+						authorId={unit.authorId}
+						onEdit={() =>
+							openUpdateModal({
+								note: unit.note,
+								tags: unit.tags,
+								_id: unit._id,
+								title: unit.title,
+								type: unit.type,
+								authorId: unit.authorId,
+							})
+						}
+						// onEdit={() => console.log('Hello world')}
+					/>
+				))}
 			{!isContentLoading &&
 				filteredContent!.map((unit) => (
 					<Card

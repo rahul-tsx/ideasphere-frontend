@@ -1,6 +1,8 @@
 import { FC, useState } from 'react';
 import { Link, useLocation } from 'react-router-dom';
 import { motion } from 'framer-motion';
+import { CustomSwitch } from './ui/custom/CustomSwitch';
+import { useToggleSphereVisibility } from '@/hooks/sphere/useToggleSphereVisibility';
 
 interface SidebarProps {
 	tags: string[];
@@ -15,16 +17,16 @@ const Sidebar: FC<SidebarProps> = ({ tags }) => {
 			`${tag.toLowerCase()}` ===
 			location.pathname.split('/').filter(Boolean).pop()
 	);
-	console.log(activeIndex);
-	console.log(location.pathname);
-
+	const { mutate: toggleVisibility } = useToggleSphereVisibility();
+	const handleVisibilityToggle = (checked: boolean) => {
+		console.log(checked);
+		toggleVisibility({ active: checked });
+	};
 	return (
-		<div className='flex-none w-[350px] max-w-[300px] min-w-[200px] flex-shrink '>
+		<div
+			className={`flex-none flex flex-col w-[300px] min-w-[200px] max-w-[300px] h-[90vh] bg-app_bg_secondary dark:bg-app_bg_secondary sticky top-24`}>
 			{/* Sidebar for larger screens */}
-			<div
-				className={`relative lg:grid ${
-					isOpen ? 'block' : 'hidden'
-				} bg-app_bg_secondary dark:bg-app_bg_secondary py-6 md:max-w-[300px] max-w-full h-screen`}>
+			<div className='relative grid py-6 flex-grow'>
 				<div className='relative'>
 					<div className='grid gap-y-4 relative'>
 						{activeIndex !== -1 && (
@@ -54,6 +56,13 @@ const Sidebar: FC<SidebarProps> = ({ tags }) => {
 					</div>
 				</div>
 			</div>
+			<div className='flex-shrink-0 p-4 mb-4'>
+				<CustomSwitch
+					label='Make Sphere Public'
+					onCheck={handleVisibilityToggle}
+					className=''
+				/>
+			</div>
 
 			{/* Mobile Sidebar Button */}
 			<button
@@ -61,8 +70,6 @@ const Sidebar: FC<SidebarProps> = ({ tags }) => {
 				onClick={() => setIsOpen(!isOpen)}>
 				{isOpen ? 'Close' : 'Open'} Sidebar
 			</button>
-
-			{/* Sidebar for mobile screens */}
 		</div>
 	);
 };

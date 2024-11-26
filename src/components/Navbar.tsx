@@ -14,7 +14,7 @@ const Navbar: React.FC = () => {
 	const { mutate: logout, isPending } = useLogout();
 	return (
 		<>
-			<nav className='bg-app_bg_primary text-app_text_primary '>
+			<nav className='bg-app_bg_primary text-app_text_primary sticky top-0 z-[50] '>
 				<header className='py-6 px-10 border-b border-app_border_color '>
 					<div className='mx-auto flex justify-between items-center'>
 						<Link
