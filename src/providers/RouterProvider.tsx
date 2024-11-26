@@ -5,6 +5,7 @@ import Dashboard from '@/pages/Dashboard';
 import Home from '@/pages/Home';
 import NotFoundPage from '@/pages/Notfound';
 import Podcasts from '@/pages/Podcasts';
+import Shared from '@/pages/Shared';
 import Tweets from '@/pages/Tweets';
 import Youtube from '@/pages/Youtube';
 import PrivateRoutes from '@/routes/PrivateRoutes';
@@ -51,7 +52,7 @@ const router = createBrowserRouter([
 							},
 							{
 								path: 'podcasts',
-								element: <Podcasts/>,
+								element: <Podcasts />,
 							},
 							{
 								path: 'blogs',
@@ -66,8 +67,16 @@ const router = createBrowserRouter([
 								element: <Youtube />,
 							},
 							{
-								path: 'friends',
-								element: <Tweets />,
+								path: 'shared',
+								element: <Shared />,
+							},
+							{
+								path: 'shared/:hash',
+								element: <Shared />, // Handles /dashboard/shared/abc123
+							},
+							{
+								path: 'shared/:username/:hash',
+								element: <Shared />, // Handles /dashboard/shared/username/hash
 							},
 						],
 					},

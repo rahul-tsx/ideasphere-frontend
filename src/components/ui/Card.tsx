@@ -5,12 +5,15 @@ import defaultImage from '@/assets/images/ideasphere.webp';
 import CardSideBar from './custom/CardSidebar';
 import AlertBox from './custom/AlertBox';
 import { useDeleteContent } from '@/hooks/content/useDeleteContent';
+import { useShareContent } from '@/hooks/content/useShareContent';
+import useAuthStore from '@/store/authStore';
 
 interface CardProps {
 	contentId: string;
 	title: string;
 	link: string;
 	note?: string;
+	authorId: string;
 	tags?: { _id: string; title: string }[];
 	type: ContentType;
 	image?: string; // Optional image prop
@@ -26,12 +29,14 @@ const Card: FC<CardProps> = ({
 	tags,
 	type,
 	image,
+	authorId,
 	onEdit,
-	onShare,
 }) => {
 	// Renders content based on the type
 	const [alertOpen, setAlertOpen] = useState(false);
 	const { mutate: deleteIdea } = useDeleteContent();
+	const { data: hash } = useShareContent(contentId);
+	const { userId } = useAuthStore();
 
 	const triggerAlertBox = () => {
 		setAlertOpen(true);
@@ -108,10 +113,12 @@ const Card: FC<CardProps> = ({
 				{/* Sidebar with Action Buttons */}
 			</motion.div>
 			<CardSideBar
+				owner={userId === authorId}
 				onDelete={triggerAlertBox}
 				onEdit={onEdit}
-				onShare={onShare}
+				shareAbleHash={hash}
 			/>
+
 			<AlertBox
 				open={alertOpen}
 				setOpen={setAlertOpen}

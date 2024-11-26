@@ -9,6 +9,7 @@ export default defineConfig(({ mode }) => {
 	  define: {
 		'process.env.VITE_BASE_URL': JSON.stringify(env.VITE_BASE_URL),
 		'process.env.VITE_SUB_URL': JSON.stringify(env.VITE_SUB_URL),
+		'process.env.VITE_FRONTEND_PORT': JSON.stringify(env.VITE_FRONTEND_PORT),
 	  },
 	  plugins: [viteReact()],
 	  resolve: {

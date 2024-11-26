@@ -2,6 +2,7 @@
 import {
 	addContentSchema,
 	ContentSchema,
+	FetchedIdeaSchema,
 	updateContentSchema,
 } from './../../types/contentTypes';
 import client from '../client';
@@ -33,5 +34,17 @@ export const deleteContent = async (contentId: string) => {
 export const getAllContent = async (): Promise<ContentSchema[]> => {
 	const response = await client.get(`${process.env.VITE_SUB_URL}/content`);
 	console.log('my content', response.data.data);
+	return response.data.data;
+};
+export const shareIdea = async (contentId: string) => {
+	const response = await client.get(
+		`${process.env.VITE_SUB_URL}/content/${contentId}/share`
+	);
+	return response.data.data;
+};
+export const fetchIdea = async (hash: string): Promise<FetchedIdeaSchema> => {
+	const response = await client.get(
+		`${process.env.VITE_SUB_URL}/content/${hash}`
+	);
 	return response.data.data;
 };

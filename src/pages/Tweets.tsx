@@ -30,6 +30,7 @@ const Tweets: FC<TweetsProps> = ({}) => {
 						title={unit.title}
 						type={unit.type}
 						tags={unit.tags}
+						authorId={unit.authorId}
 						onEdit={() =>
 							openUpdateModal({
 								note: unit.note,
@@ -37,6 +38,7 @@ const Tweets: FC<TweetsProps> = ({}) => {
 								_id: unit._id,
 								title: unit.title,
 								type: unit.type,
+								authorId: unit.authorId,
 							})
 						}
 					

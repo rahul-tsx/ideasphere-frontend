@@ -11,7 +11,7 @@ export const useLogin = () => {
 	const changeStatus = useStatus();
 
 	const { closeModal } = useModal('onboard');
-	const { setLoggedIn, setUsername } = useAuthStore();
+	const { setLoggedIn, setUsername, setuserId } = useAuthStore();
 
 	const navigate = useNavigate();
 	return useMutation({
@@ -19,6 +19,8 @@ export const useLogin = () => {
 		onSuccess: (response) => {
 			changeStatus('Logged in successfully', 'success');
 			setLoggedIn(true);
+
+			setuserId(response.data._id);
 			setUsername(response.data.username);
 			closeModal();
 			navigate('/dashboard');

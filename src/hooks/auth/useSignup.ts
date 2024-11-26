@@ -9,7 +9,7 @@ import useStatus from '../useStatus';
 
 export const useSignup = () => {
 	const changeStatus = useStatus();
-	const { setLoggedIn, setUsername } = useAuthStore();
+	const { setLoggedIn, setUsername, setuserId } = useAuthStore();
 	const { closeModal } = useModal('onboard');
 	const navigate = useNavigate();
 
@@ -17,6 +17,7 @@ export const useSignup = () => {
 		mutationFn: signup,
 		onSuccess: (response) => {
 			changeStatus('Signed up successfully', 'success');
+			setuserId(response.data._id);
 			setUsername(response.data.username);
 			closeModal();
 			setLoggedIn(true);

@@ -30,6 +30,7 @@ const Podcasts: FC<PodcastsProps> = ({}) => {
 						type={unit.type}
 						tags={unit.tags}
 						contentId={unit._id}
+						authorId={unit.authorId}
 						onEdit={() =>
 							openUpdateModal({
 								note: unit.note,
@@ -37,6 +38,7 @@ const Podcasts: FC<PodcastsProps> = ({}) => {
 								_id: unit._id,
 								title: unit.title,
 								type: unit.type,
+								authorId: unit.authorId,
 							})
 						}
 						// onEdit={() => console.log('Hello world')}

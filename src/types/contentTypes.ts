@@ -17,9 +17,19 @@ export interface updateContentSchema {
 export interface ContentSchema {
 	_id: string;
 	title: string;
+	authorId: string;
 	link: string;
 	type: ContentType;
 	tags?: tagReturnScheme[];
 	note?: string;
 }
+export interface FetchedIdeaSchema {
+	_id: string;
+	authorId: string;
+	title: string;
+	link: string;
+	type: ContentType;
+	tags?: tagReturnScheme[];
+}
+
 export interface ContentUpdateModalSchema extends Omit<ContentSchema, 'link'> {}

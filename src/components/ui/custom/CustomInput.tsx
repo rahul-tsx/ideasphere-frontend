@@ -4,6 +4,7 @@ import CheckboxInput from './CheckBoxInput';
 import FileInput from './FileInput';
 import { FieldError } from 'react-hook-form';
 import CustomDropdown from './CustomDropdown';
+import { cn } from '@/lib/utils';
 
 interface Option {
 	label: string;
@@ -96,7 +97,10 @@ const CustomInput = ({
 						// 	rest.onChange?.(e);
 						// 	if (rest.onChange) return;
 						// }}
-						className={`w-full text-app_text_secondary dark:text-app_text_secondary_inverse p-2 border border-app_btn_primary_bg rounded-lg font-semibold outline-none  ${className}`}
+						className={cn(
+							`w-full text-app_text_secondary dark:text-app_text_secondary_inverse p-2 border border-app_btn_primary_bg rounded-lg font-semibold outline-none `,
+							className
+						)}
 					/>
 					{error && <p className='text-red-500 text-sm'>{error.message}</p>}
 				</>
@@ -117,5 +121,6 @@ const CustomInput = ({
 		</div>
 	);
 };
+
 
 export default CustomInput;
