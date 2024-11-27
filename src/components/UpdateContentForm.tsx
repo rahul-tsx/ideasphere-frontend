@@ -12,42 +12,19 @@ import { useUpdateContent } from '@/hooks/content/useUpdateContent';
 import { updateContentSchema } from '@/types/contentTypes';
 import { ContentType } from '@/types/utilityTypes';
 import { tagReturnScheme } from '@/types/tagsTypes';
+import { updateContentValidator } from '@/validators/UpdateContentValidator';
 
 interface UpdateContentFormProps {
 	contentId: string;
 	title: string;
 	type: ContentType;
+	link: string;
 	tags?: tagReturnScheme[];
 	note?: string;
 }
 
-const tagsSchema = z
-	.array(
-		z.string().refine((value) => /^[0-9a-fA-F]{24}$/.test(value), {
-			message: 'Invalid ObjectId format for tags',
-		})
-	)
-	.optional();
-const getformSchema = () =>
-	z.object({
-		title: z
-			.string()
-			.optional()
-			.refine((value) => value === undefined || value.length > 0, {
-				message: 'Title cannot be empty if provided',
-			})
-			.transform((value) => (value ? value.trim() : undefined))
-			.refine((value) => value === undefined || value.length >= 3, {
-				message: 'Title should be at least 3 characters long',
-			})
-			.refine((value) => value === undefined || value.length <= 70, {
-				message: 'Title should be maximum 70 characters long',
-			}),
-		type: z.enum(CONTENT_TYPES).optional(),
-		tags: tagsSchema,
-		note: z.string().optional(),
-	});
-type FormSchema = z.infer<ReturnType<typeof getformSchema>>;
+
+type FormSchema = z.infer<ReturnType<typeof updateContentValidator>>;
 
 const UpdateContentForm: FC<UpdateContentFormProps> = ({
 	contentId,
@@ -55,13 +32,14 @@ const UpdateContentForm: FC<UpdateContentFormProps> = ({
 	type,
 	note,
 	tags,
+	link,
 }) => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors },
 	} = useForm<FormSchema>({
-		resolver: zodResolver(getformSchema()),
+		resolver: zodResolver(updateContentValidator(link)),
 		defaultValues: { note: note, title: title },
 	});
 

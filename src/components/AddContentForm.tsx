@@ -9,43 +9,22 @@ import TagSelector from './TagSelector';
 import { CONTENT_TYPES } from '@/assets/constants/data';
 import { convertToCapitialCase } from '@/lib/utility/convertToCapitalCase';
 import { useContent } from '@/hooks/content/useContent';
+import { addFormValidator } from '@/validators/AddContentValidator';
 
 interface AddContentFormProps {}
 
-const tagsSchema = z.array(
-	z.string().refine((value) => /^[0-9a-fA-F]{24}$/.test(value), {
-		message: 'Invalid ObjectId format for tags',
-	})
-);
-const getformSchema = () =>
-	z.object({
-		title: z
-			.string({
-				required_error: 'title is required',
-			})
-			.min(3, 'Title should be atleast 3 characters long')
-			.max(70, 'Title should be maximum 70 characters long')
-			.trim(),
-		link: z
-			.string({ required_error: 'link is required' })
-			.url({ message: 'invalid url' }),
-		type: z.enum(CONTENT_TYPES),
-		tags: tagsSchema,
-		note: z.string().optional(),
-	});
-type FormSchema = z.infer<ReturnType<typeof getformSchema>>;
+type FormSchema = z.infer<ReturnType<typeof addFormValidator>>;
 
 const AddContentForm: FC<AddContentFormProps> = () => {
 	const {
 		handleSubmit,
 		control,
 		formState: { errors },
-	} = useForm<FormSchema>({ resolver: zodResolver(getformSchema()) });
-	const { createContent, creatingContent, contentCreationError } = useContent();
+	} = useForm<FormSchema>({ resolver: zodResolver(addFormValidator()) });
+	const { createContent, creatingContent } = useContent();
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-	
 		console.log('Formdata', data);
 		createContent(data);
 	};
@@ -117,6 +96,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 					render={({ field }) => (
 						<TagSelector
 							label='Tags'
+							//TODO:HANDLE THIS ERROR
 							value={field.value || []}
 							onChange={field.onChange}
 						/>

@@ -31,13 +31,13 @@ const CardSideBar: FC<CardSideBarProps> = ({
 	return (
 		<motion.div
 			className='z-10 absolute top-3 -right-4  '
-			initial={{ opacity: 0, right: '-16px' }}
+			initial={{ opacity: 0, right: '-12px' }}
 			animate={{ opacity: 100 }}
-			exit={{ opacity: 0, right: '-16px' }}
+			exit={{ opacity: 0, right: '-12px' }}
 			transition={{
 				opacity: { duration: 0.3, delay: 1 },
 			}}
-			whileHover={{ right: '-60px' }}
+			whileHover={{ right: '-50px' }}
 			style={{ transformOrigin: 'right center' }}>
 			<motion.div className=' right-9 flex flex-col items-center justify-between space-y-4 bg-app_card_primaryborder p-4  rounded-r-[30px] shadow-2xl shadow-app_card_primaryshadow '>
 				{owner && (

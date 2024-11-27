@@ -71,7 +71,7 @@
 }
 
 .ideaContainers {
-	@apply bg-app_bg_secondary min-h-[75vh] rounded-xl p-10 grid grid-cols-3 gap-5 gap-x-14;
+	@apply bg-app_bg_secondary min-h-[75vh] rounded-xl p-10 grid lg:grid-cols-2 xl:grid-cols-3 gap-5 gap-x-14;
 }
 
 @layer base {

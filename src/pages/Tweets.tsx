@@ -1,5 +1,5 @@
 import { useContent } from '@/hooks/content/useContent';
-import { FC } from 'react';
+import { FC, useEffect } from 'react';
 import Card from '../components/ui/Card';
 import { ContentSchema } from '@/types/contentTypes';
 import { useModal } from '@/hooks/useModal';
@@ -9,6 +9,7 @@ interface TweetsProps {}
 const Tweets: FC<TweetsProps> = ({}) => {
 	const { content, isContentLoading } = useContent();
 	let filteredContent: ContentSchema[] = [];
+	
 
 	const { openModal: openUpdateModal } =
 		useModal<Omit<ContentSchema, 'link'>>('updateContent');
@@ -41,7 +42,6 @@ const Tweets: FC<TweetsProps> = ({}) => {
 								authorId: unit.authorId,
 							})
 						}
-					
 					/>
 				))}
 		</div>

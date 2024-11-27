@@ -8,6 +8,9 @@ import { useDeleteContent } from '@/hooks/content/useDeleteContent';
 import { useShareContent } from '@/hooks/content/useShareContent';
 import useAuthStore from '@/store/authStore';
 import { useCopySharedContent } from '@/hooks/content/useCopySharedIdea';
+import { extractYouTubeId } from '@/lib/utility/extractYoutubeId';
+import TweetComponent from '../TweetComponent';
+import { convertTweetLinks } from '@/lib/utility/convertTweetLinks';
 
 interface CardProps {
 	contentId: string;
@@ -49,20 +52,19 @@ const Card: FC<CardProps> = ({
 	const renderContent = () => {
 		switch (type) {
 			case 'tweet':
-				return (
-					<blockquote className='twitter-tweet'>
-						<a href={link}>View Tweet</a>
-					</blockquote>
-				);
+				console.log('tweet url', link);
+				const tweetUrl = convertTweetLinks(link);
+				return <TweetComponent tweetUrl={tweetUrl} />;
 
 			case 'youtube':
+				console.log('Youtub id', extractYouTubeId(link));
 				return (
 					<iframe
 						width='100%'
 						height='200'
-						src={`https://www.youtube.com/embed/${new URL(
-							link
-						).searchParams.get('v')}`}
+						src={`https://www.youtube.com/embed/
+							${extractYouTubeId(link)}
+						`}
 						title='YouTube video'
 						frameBorder='0'
 						allow='accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture'
@@ -83,20 +85,21 @@ const Card: FC<CardProps> = ({
 	};
 
 	return (
-		<div className='relative max-w-[90%]'>
+		<div className='relative '>
 			<motion.div
-				className=' bg-app_card_primary_bg text-app_text_primary shadow-app_card_primaryshadow border-2 border-app_card_primaryborder shadow-lg rounded-lg p-6 relative overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 z-20'
+				className=' bg-app_card_primary_bg min-h-[350px] text-app_text_primary shadow-app_card_primaryshadow border-2 border-app_card_primaryborder shadow-lg rounded-lg p-6 relative overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 z-20'
 				initial={{ opacity: 0, y: 30 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, ease: 'easeOut' }}>
-				<div className='relative w-full h-48 overflow-hidden rounded-lg mb-4'>
-					<img
-						src={image || defaultImage}
-						alt={title}
-						className='object-cover w-full h-full'
-					/>
-				</div>
-
+				{type !== 'youtube' && type !== 'tweet' && (
+					<div className='relative w-full h-48 overflow-hidden rounded-lg mb-4'>
+						<img
+							src={image || defaultImage}
+							alt={title}
+							className='object-cover w-full h-full'
+						/>
+					</div>
+				)}
 				<h2 className='text-xl font-semibold mb-4'>{title}</h2>
 				<div className='content mb-4'>{renderContent()}</div>
 				<div className='tags flex flex-wrap gap-2'>

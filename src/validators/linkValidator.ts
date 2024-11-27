@@ -25,7 +25,7 @@ export const linkValidator = z.string().transform((input) => {
       ? /^[a-zA-Z0-9*@#_-]+$/.test(username)
       : true;
 
-    const isValidHash = hash && /^[A-Za-z0-9-$_]{60}$/.test(hash);
+    const isValidHash = hash && /^[A-Za-z0-9-$_.]{60}$/.test(hash);
 
    
     if (
@@ -48,4 +48,16 @@ export const linkValidator = z.string().transform((input) => {
 }).refine((result) => result !== null, {
   message: 'Invalid Link', 
 });
+
+// validationUtils.ts
+export const validateYouTubeLink = (link: string): boolean =>
+	link.includes('youtube.com') || link.includes('youtu.be');
+
+export const validateTweetLink = (link: string): boolean =>
+	link.includes('x.com') || link.includes('twitter.com');
+
+// Add more validators as needed
+export const validateCustomLink = (link: string, domain: string): boolean =>
+	link.includes(domain);
+
 
