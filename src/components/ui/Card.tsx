@@ -7,10 +7,11 @@ import AlertBox from './custom/AlertBox';
 import { useDeleteContent } from '@/hooks/content/useDeleteContent';
 import { useShareContent } from '@/hooks/content/useShareContent';
 import useAuthStore from '@/store/authStore';
-import { useCopySharedContent } from '@/hooks/content/useCopySharedIdea';
+
 import { extractYouTubeId } from '@/lib/utility/extractYoutubeId';
-import TweetComponent from '../TweetComponent';
+
 import { convertTweetLinks } from '@/lib/utility/convertTweetLinks';
+import { Tweet } from 'react-tweet';
 
 interface CardProps {
 	contentId: string;
@@ -52,9 +53,10 @@ const Card: FC<CardProps> = ({
 	const renderContent = () => {
 		switch (type) {
 			case 'tweet':
-				console.log('tweet url', link);
 				const tweetUrl = convertTweetLinks(link);
-				return <TweetComponent tweetUrl={tweetUrl} />;
+				// return <TweetComponent tweetUrl={tweetUrl} />;
+				console.log(tweetUrl.tweetId);
+				return <Tweet id={tweetUrl.tweetId!} />;
 
 			case 'youtube':
 				console.log('Youtub id', extractYouTubeId(link));
@@ -85,7 +87,7 @@ const Card: FC<CardProps> = ({
 	};
 
 	return (
-		<div className='relative '>
+		<div className='relative md:w-full w-[90%] '>
 			<motion.div
 				className=' bg-app_card_primary_bg min-h-[350px] text-app_text_primary shadow-app_card_primaryshadow border-2 border-app_card_primaryborder shadow-lg rounded-lg p-6 relative overflow-hidden hover:shadow-xl hover:-translate-y-2 transition-all duration-300 z-20'
 				initial={{ opacity: 0, y: 30 }}

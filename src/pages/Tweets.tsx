@@ -1,5 +1,5 @@
 import { useContent } from '@/hooks/content/useContent';
-import { FC, useEffect } from 'react';
+import { FC} from 'react';
 import Card from '../components/ui/Card';
 import { ContentSchema } from '@/types/contentTypes';
 import { useModal } from '@/hooks/useModal';

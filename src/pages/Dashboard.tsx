@@ -9,8 +9,17 @@ import { useModal } from '@/hooks/useModal';
 import useStatus from '@/hooks/useStatus';
 import { generateLink } from '@/lib/utility/generateLink';
 import useAuthStore from '@/store/authStore';
+import useMenuStore from '@/store/collapsibleMenuStore';
 import { FC } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import {
+	FaBlog,
+	FaMicrophone,
+	FaNewspaper,
+	FaShare,
+	FaTwitter,
+	FaYoutube,
+} from 'react-icons/fa';
 import { Outlet, useLocation } from 'react-router-dom';
 
 interface DashboardProps {}
@@ -27,50 +36,60 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 		pathname: 'dashboard/shared',
 		param: data,
 	});
+	const { isSideBarOpen } = useMenuStore();
 
 	return (
 		<div className='bg-app_bg_primary flex '>
 			<Sidebar
-				tags={['Tweets', 'Podcasts', 'Blogs', 'Articles', 'Youtube', 'Shared']}
+				sections={[
+					{ label: 'Tweets', icon: FaTwitter },
+					{ label: 'Podcasts', icon: FaMicrophone },
+					{ label: 'Blogs', icon: FaBlog },
+					{ label: 'Articles', icon: FaNewspaper },
+					{ label: 'Youtube', icon: FaYoutube },
+					{ label: 'Shared', icon: FaShare },
+				]}
 			/>
-			<div className='w-full'>
-				<div className='flex-1 p-5 pl-10 pb-10  gap-y-5 flex flex-col'>
-					{!isShared && (
-						<div className='flex justify-between gap-x-5 items-center'>
-							<p className='font-bold text-2xl'>Welcome {username}</p>
+			{!isSideBarOpen && (
+				<div className='w-full'>
+					<div className='flex-1 p-5 pl-10 pb-10  gap-y-5 flex flex-col'>
+						{!isShared && (
+							<div className='flex justify-between gap-5 items-center md:flex-row flex-col'>
+								<p className='font-bold text-2xl'>Welcome {username}</p>
 
-							<div className='flex gap-x-10'>
-								<CustomButton
-									type='button'
-									size='md'
-									variant='primary'
-									classname=''
-									onClick={() => openModal()}>
-									Add Content
-								</CustomButton>
-								<CopyToClipboard
-									text={sphereLink}
-									onCopy={() =>
-										changeStatus(
-											'Sphere Url Copied to Clipboard you can now share it with your peers',
-											'success'
-										)
-									}>
+								<div className='flex gap-x-10'>
 									<CustomButton
 										type='button'
 										size='md'
-										variant='secondary'
-										classname=''>
-										Share Sphere
+										variant='primary'
+										classname=''
+										onClick={() => openModal()}>
+										Add Content
 									</CustomButton>
-								</CopyToClipboard>
+									<CopyToClipboard
+										text={sphereLink}
+										onCopy={() =>
+											changeStatus(
+												'Sphere Url Copied to Clipboard you can now share it with your peers',
+												'success'
+											)
+										}>
+										<CustomButton
+											type='button'
+											size='md'
+											variant='secondary'
+											classname=''>
+											Share Sphere
+										</CustomButton>
+									</CopyToClipboard>
+								</div>
 							</div>
-						</div>
-					)}
-					<Outlet />
+						)}
+						<Outlet />
+					</div>
+					<Footer />
 				</div>
-				<Footer />
-			</div>
+			)}
 
 			<AddContentModal />
 			<UpdateContentModal />

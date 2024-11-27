@@ -95,7 +95,7 @@ const CloseIcon = ({ modalId }: { modalId: string }) => {
 	return (
 		<button
 			onClick={closeModal}
-			className='absolute top-14 right-[-50px] group z-[50] bg-white rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
+			className='absolute top-14 right-[-50px] group z-[50] hidden md:block bg-white rounded-r-full p-4 shadow-lg border border-gray-200 dark:border-neutral-800 hover:scale-110 transition-transform '>
 			<svg
 				xmlns='http://www.w3.org/2000/svg'
 				width='24'
@@ -107,6 +107,35 @@ const CloseIcon = ({ modalId }: { modalId: string }) => {
 				strokeLinecap='round'
 				strokeLinejoin='round'
 				className='text-black size-6 group-hover:scale-125 group-hover:rotate-3 transition duration-200'>
+				<path
+					stroke='none'
+					d='M0 0h24v24H0z'
+					fill='none'
+				/>
+				<path d='M18 6l-12 12' />
+				<path d='M6 6l12 12' />
+			</svg>
+		</button>
+	);
+};
+
+const CloseIcon2 = ({ modalId }: { modalId: string }) => {
+	const { closeModal } = useModal(modalId);
+	return (
+		<button
+			onClick={() => closeModal()}
+			className='absolute top-4 right-4 group'>
+			<svg
+				xmlns='http://www.w3.org/2000/svg'
+				width='24'
+				height='24'
+				viewBox='0 0 24 24'
+				fill='none'
+				stroke='currentColor'
+				strokeWidth='2'
+				strokeLinecap='round'
+				strokeLinejoin='round'
+				className='text-black dark:text-white size-8 md:hidden group-hover:scale-125 group-hover:rotate-3 transition duration-200'>
 				<path
 					stroke='none'
 					d='M0 0h24v24H0z'
@@ -188,6 +217,7 @@ export const ModalBody = ({
 								stiffness: 260,
 								damping: 15,
 							}}>
+							<CloseIcon2 modalId={modalId} />
 							{children}
 						</motion.div>
 						<CloseIcon modalId={modalId} />
