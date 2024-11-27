@@ -9,6 +9,7 @@ import { useFetchSharedSphere } from '@/hooks/sphere/useFetchSharedSphere';
 import useStatus from '@/hooks/useStatus';
 import axios from 'axios';
 import { useCopySharedSphere } from '@/hooks/sphere/useCopySharedSphere';
+import { useLocation } from 'react-router-dom';
 
 interface SharedProps {}
 
@@ -19,6 +20,8 @@ const Shared: FC<SharedProps> = ({}) => {
 		hash: string;
 	} | null>(null);
 	const [validationError, setValidationError] = useState<any>(null);
+	const location = useLocation();
+	const fullUrl = window.location.href;
 	let username = null;
 	let hash1 = null;
 	let hash2 = null;
@@ -42,7 +45,7 @@ const Shared: FC<SharedProps> = ({}) => {
 		error,
 	} = useFetchSharedSphere(username, hash1);
 	const { mutate: copySphere } = useCopySharedSphere();
-	
+
 	useEffect(() => {
 		if (error) {
 			if (axios.isAxiosError(error) && error.response) {
@@ -53,12 +56,27 @@ const Shared: FC<SharedProps> = ({}) => {
 			}
 		}
 	}, [error]);
+	useEffect(() => {
+		const pathname = location.pathname;
+		const segments = pathname.split('/').filter(Boolean);
+		if (segments.length > 2) {
+			handleSearch(fullUrl);
+		}
+		// http://localhost:5173/dashboard/shared/test2/$2b$10$j8KRcmTAnJxqVQ9b2jhuAeJW1tnHPVKrdPyP_Ulr1oxp8w.Hllfm6
+	}, [location.pathname]);
+
 	const handleChange = (link: string) => {
 		setInputValue(link);
 	};
 
-	const handleSearch = () => {
-		const result = linkValidator.safeParse(inputValue);
+	const handleSearch = (url?: string) => {
+		let result;
+		if (url) {
+			result = linkValidator.safeParse(url);
+		} else {
+			result = linkValidator.safeParse(inputValue);
+		}
+
 		if (result.success) {
 			const { username, hash } = result.data;
 			if (username === 'shared') {
@@ -108,7 +126,7 @@ const Shared: FC<SharedProps> = ({}) => {
 						variant='secondary'
 						classname='flex flex-shrink-0 items-center justify-center gap-x-3'
 						type='button'
-						onClick={() => copySphere({ username:username!, hash:hash1! })}>
+						onClick={() => copySphere({ username: username!, hash: hash1! })}>
 						<CgCopy size={20} />
 						<p>Copy Sphere</p>
 					</CustomButton>

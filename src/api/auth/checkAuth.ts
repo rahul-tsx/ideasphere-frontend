@@ -1,13 +1,18 @@
 import useAuthStore from '@/store/authStore';
 import client from '../client';
+import { sphereStatus } from '../content/share';
 
 export const checkAuth = async () => {
-	const { setLoggedIn, setUsername, setuserId } = useAuthStore.getState();
+	const { setLoggedIn, setUsername, setuserId, setSphereStatus } =
+		useAuthStore.getState();
 
 	try {
 		const response = await client.get(`${process.env.VITE_SUB_URL}/auth/me`, {
 			withCredentials: true,
 		});
+		const sphereStatusData = await sphereStatus();
+		console.log('Hello', sphereStatusData.active);
+		setSphereStatus(sphereStatusData.active);
 
 		setLoggedIn(true);
 		setuserId(response.data.data._id);

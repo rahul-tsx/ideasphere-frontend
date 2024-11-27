@@ -6,22 +6,31 @@ import { useModal } from '../useModal';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '@/store/authStore';
 import axios from 'axios';
+import { useFetchSphereStatus } from '../sphere/useFetchSphereStatus';
+import { sphereStatus } from '@/api/content/share';
 
 export const useLogin = () => {
 	const changeStatus = useStatus();
 
 	const { closeModal } = useModal('onboard');
-	const { setLoggedIn, setUsername, setuserId } = useAuthStore();
+	const { setLoggedIn, setUsername, setuserId, setSphereStatus } =
+		useAuthStore();
 
 	const navigate = useNavigate();
 	return useMutation({
 		mutationFn: login,
-		onSuccess: (response) => {
+		onSuccess: async (response) => {
 			changeStatus('Logged in successfully', 'success');
-			setLoggedIn(true);
 
+			setLoggedIn(true);
 			setuserId(response.data._id);
 			setUsername(response.data.username);
+			try {
+				const sphereResponse = await sphereStatus(); 
+				setSphereStatus(sphereResponse.active); 
+			} catch (error) {
+				changeStatus('Failed to fetch sphere status', 'error');
+			}
 			closeModal();
 			navigate('/dashboard');
 		},

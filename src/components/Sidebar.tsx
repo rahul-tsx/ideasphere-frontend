@@ -5,6 +5,7 @@ import { CustomSwitch } from './ui/custom/CustomSwitch';
 import { useToggleSphereVisibility } from '@/hooks/sphere/useToggleSphereVisibility';
 import { IconType } from 'react-icons/lib';
 import useMenuStore from '@/store/collapsibleMenuStore';
+import useAuthStore from '@/store/authStore';
 
 interface SidebarProps {
 	sections: { label: string; icon: IconType }[];
@@ -12,8 +13,9 @@ interface SidebarProps {
 
 const Sidebar: FC<SidebarProps> = ({ sections }) => {
 	const { isSideBarOpen, setSideBarOpen } = useMenuStore();
+	
+	const { sphereStatus } = useAuthStore();
 	const location = useLocation();
-
 	const activeIndex = sections.findIndex(
 		(tag) =>
 			`${tag.label.toLowerCase()}` ===
@@ -72,6 +74,7 @@ const Sidebar: FC<SidebarProps> = ({ sections }) => {
 				<div className='flex-shrink-0 p-4 mb-4'>
 					<CustomSwitch
 						label='Make Sphere Public'
+						defaultValue={sphereStatus}
 						onCheck={handleVisibilityToggle}
 						className=''
 					/>

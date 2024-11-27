@@ -55,11 +55,10 @@ const Card: FC<CardProps> = ({
 			case 'tweet':
 				const tweetUrl = convertTweetLinks(link);
 				// return <TweetComponent tweetUrl={tweetUrl} />;
-				console.log(tweetUrl.tweetId);
+
 				return <Tweet id={tweetUrl.tweetId!} />;
 
 			case 'youtube':
-				console.log('Youtub id', extractYouTubeId(link));
 				return (
 					<iframe
 						width='100%'
