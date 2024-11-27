@@ -11,7 +11,6 @@ export const checkAuth = async () => {
 			withCredentials: true,
 		});
 		const sphereStatusData = await sphereStatus();
-		console.log('Hello', sphereStatusData.active);
 		setSphereStatus(sphereStatusData.active);
 
 		setLoggedIn(true);

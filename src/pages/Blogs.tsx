@@ -25,6 +25,7 @@ const Blogs: FC<BlogsProps> = ({}) => {
 				filteredContent!.map((unit) => (
 					<Card
 						link={unit.link}
+						key={unit._id}
 						note={unit.note}
 						title={unit.title}
 						type={unit.type}
@@ -41,7 +42,6 @@ const Blogs: FC<BlogsProps> = ({}) => {
 								authorId: unit.authorId,
 							})
 						}
-						// onEdit={() => console.log('Hello world')}
 					/>
 				))}
 		</div>

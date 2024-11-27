@@ -4,7 +4,7 @@ import Footer from '@/components/Footer';
 
 const RootLayout = () => {
 	const location = useLocation();
-	console.log(location.pathname);
+	
 	const pathSegments = location.pathname.split('/').filter(Boolean);
 	const isDashboard = pathSegments.includes('dashboard');
 	return (

@@ -7,7 +7,7 @@ const TweetComponent = ({ tweetUrl }: { tweetUrl: string }) => {
 			window.twttr.widgets.load();
 		}
 	}, [tweetUrl, theme]);
-	console.log('TweetUrl', tweetUrl);
+
 
 	return (
 		<blockquote

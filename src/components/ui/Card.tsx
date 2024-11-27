@@ -115,7 +115,7 @@ const Card: FC<CardProps> = ({
 				</div>
 				{note && <p className='mt-4 text-app_text_secondary text-sm'>{note}</p>}
 
-				{/* Sidebar with Action Buttons */}
+			
 			</motion.div>
 			<CardSideBar
 				owner={userId === authorId}

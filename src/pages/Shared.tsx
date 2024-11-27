@@ -62,7 +62,6 @@ const Shared: FC<SharedProps> = ({}) => {
 		if (segments.length > 2) {
 			handleSearch(fullUrl);
 		}
-		// http://localhost:5173/dashboard/shared/test2/$2b$10$j8KRcmTAnJxqVQ9b2jhuAeJW1tnHPVKrdPyP_Ulr1oxp8w.Hllfm6
 	}, [location.pathname]);
 
 	const handleChange = (link: string) => {
@@ -142,6 +141,7 @@ const Shared: FC<SharedProps> = ({}) => {
 					(!sphere || sphere.length === 0) && <p>No Content Found </p>}
 				{idea && (
 					<Card
+						key={idea._id}
 						contentId={idea._id}
 						link={idea.link}
 						title={idea.title}
@@ -155,6 +155,7 @@ const Shared: FC<SharedProps> = ({}) => {
 				{sphere &&
 					sphere.map((idea) => (
 						<Card
+							key={idea._id}
 							contentId={idea._id}
 							link={idea.link}
 							title={idea.title}

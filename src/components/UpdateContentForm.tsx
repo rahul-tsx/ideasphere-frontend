@@ -47,7 +47,7 @@ const UpdateContentForm: FC<UpdateContentFormProps> = ({
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data: updateContentSchema) => {
-		console.log('Formdata', data);
+	
 		updateContent({ contentData: data, contentId: contentId });
 	};
 

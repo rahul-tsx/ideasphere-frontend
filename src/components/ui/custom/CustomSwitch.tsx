@@ -15,7 +15,7 @@ export function CustomSwitch({
 
 	onCheck: (checked: boolean) => void;
 }) {
-	console.log('my defualtValue', defaultValue);
+
 	return (
 		<div className='flex items-center space-x-4 justify-center'>
 			<Label

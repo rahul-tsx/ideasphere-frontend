@@ -25,7 +25,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		console.log('Formdata', data);
+	
 		createContent(data);
 	};
 

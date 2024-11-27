@@ -74,8 +74,7 @@ const CustomDropdown = ({
 	...rest
 }: DropdownProps) => {
 	const handleChange = (newValue: any) => {
-		// const tagsValue = newValue.map((tag: TagOption) => tag.value);
-		// console.log('newValeu content', newValue);
+		
 		onChange(newValue.value);
 	};
 	return (

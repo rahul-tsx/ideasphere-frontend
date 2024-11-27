@@ -23,7 +23,7 @@ const Sidebar: FC<SidebarProps> = ({ sections }) => {
 	);
 	const { mutate: toggleVisibility } = useToggleSphereVisibility();
 	const handleVisibilityToggle = (checked: boolean) => {
-		console.log(checked);
+	
 		toggleVisibility({ active: checked });
 	};
 

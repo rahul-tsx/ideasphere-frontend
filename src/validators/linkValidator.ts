@@ -11,11 +11,11 @@ export const linkValidator = z
 			const pathname = '/dashboard/shared';
 
 			const isCorrectHostname = url.hostname === hostname;
-			console.log(isCorrectHostname);
+
 			const isCorrectPort = port ? url.port === port : true;
-			console.log(isCorrectPort);
+
 			const isCorrectPathname = url.pathname.startsWith(pathname);
-			console.log(isCorrectPathname);
+
 			const pathParts = url.pathname.split('/').filter(Boolean);
 
 			const [username, hash] = pathParts.slice(-2);
@@ -23,10 +23,8 @@ export const linkValidator = z
 			const isValidUsername = username
 				? /^[a-zA-Z0-9*@#_-]+$/.test(username)
 				: true;
-			console.log(isValidUsername);
 
 			const isValidHash = hash && /^[A-Za-z0-9-$_.]{60}$/.test(hash);
-			console.log(isValidHash);
 
 			if (
 				isCorrectHostname &&

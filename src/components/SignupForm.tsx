@@ -59,7 +59,7 @@ const SignupForm: FC<SignupFormProps> = () => {
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		console.log(data);
+	
 		signup(data);
 	};
 

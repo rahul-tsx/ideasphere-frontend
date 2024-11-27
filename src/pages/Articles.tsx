@@ -24,6 +24,7 @@ const Articles: FC<ArticlesProps> = ({}) => {
 			{!isContentLoading &&
 				filteredContent!.map((unit) => (
 					<Card
+						key={unit._id}
 						link={unit.link}
 						note={unit.note}
 						title={unit.title}
@@ -41,10 +42,8 @@ const Articles: FC<ArticlesProps> = ({}) => {
 								authorId: unit.authorId,
 							})
 						}
-						// onEdit={() => console.log('Hello world')}
 					/>
 				))}
-			
 		</div>
 	);
 };

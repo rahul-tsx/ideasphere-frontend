@@ -37,7 +37,7 @@ const LoginForm: FC<LoginFormProps> = () => {
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-		console.log(data);
+		
 		login(data);
 	};
 

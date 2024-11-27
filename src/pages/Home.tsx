@@ -13,7 +13,7 @@ const Home: FC<HomeProps> = () => {
 	const navigate = useNavigate();
 	const handleStartUp = () => {
 		if (loggedIn) {
-			console.log('Hello');
+		
 			navigate('/dashboard');
 		} else {
 			openModal();

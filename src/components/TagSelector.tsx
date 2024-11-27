@@ -49,7 +49,7 @@ const TagSelector: FC<TagSelectorProps> = ({ label, onChange, value }) => {
 	const handleChange = (newValue: any) => {
 		setSelectedTags(newValue || []);
 		const tagsValue = newValue.map((tag: TagOption) => tag.value);
-		console.log('newValeu', tagsValue);
+		
 		onChange(tagsValue);
 	};
 
