@@ -53,9 +53,7 @@ const Card: FC<CardProps> = ({ content, image, onEdit }) => {
 				return <Tweet id={tweetUrl.tweetId!} />;
 
 			case 'youtube':
-				console.log('Card');
-				console.log(content.link);
-				console.log(extractYouTubeId(content.link));
+			
 				return (
 					<iframe
 						width='100%'

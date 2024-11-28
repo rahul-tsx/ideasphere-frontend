@@ -23,9 +23,8 @@ const ViewFullContentModal: FC<ViewFullContentModalProps> = ({ content }) => {
 			);
 			break;
 		case 'youtube':
-			console.log('Full screen');
-			console.log(content.link);
-			console.log(extractYouTubeId(content.link));
+			
+	
 			mainContent = (
 				<iframe
 					width='100%'

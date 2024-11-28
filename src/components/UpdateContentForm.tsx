@@ -41,7 +41,7 @@ const UpdateContentForm: FC<UpdateContentFormProps> = ({
 		resolver: zodResolver(updateContentValidator(link)),
 		defaultValues: { note: note, title: title },
 	});
-	console.log('my', link);
+	
 	const { mutate: updateContent, isPending } = useUpdateContent();
 
 	// Form submission handler
