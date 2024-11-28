@@ -2,6 +2,7 @@ import About from '@/components/About';
 import Articles from '@/pages/Articles';
 import Blogs from '@/pages/Blogs';
 import Dashboard from '@/pages/Dashboard';
+import Documents from '@/pages/Documents';
 import Home from '@/pages/Home';
 import NotFoundPage from '@/pages/Notfound';
 import Podcasts from '@/pages/Podcasts';
@@ -41,10 +42,14 @@ const router = createBrowserRouter([
 								path: '',
 								element: (
 									<Navigate
-										to='tweets'
+										to='documents'
 										replace
 									/>
 								),
+							},
+							{
+								path: 'documents',
+								element: <Documents />,
 							},
 							{
 								path: 'tweets',

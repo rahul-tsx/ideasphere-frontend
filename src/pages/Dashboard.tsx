@@ -12,6 +12,7 @@ import useAuthStore from '@/store/authStore';
 import useMenuStore from '@/store/collapsibleMenuStore';
 import { FC } from 'react';
 import CopyToClipboard from 'react-copy-to-clipboard';
+import { CgFileDocument } from 'react-icons/cg';
 import {
 	FaBlog,
 	FaMicrophone,
@@ -42,6 +43,7 @@ const Dashboard: FC<DashboardProps> = ({}) => {
 		<div className='bg-app_bg_primary flex '>
 			<Sidebar
 				sections={[
+					{ label: 'Documents', icon: CgFileDocument },
 					{ label: 'Tweets', icon: FaTwitter },
 					{ label: 'Podcasts', icon: FaMicrophone },
 					{ label: 'Blogs', icon: FaBlog },

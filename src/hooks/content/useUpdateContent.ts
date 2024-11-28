@@ -22,13 +22,14 @@ export const useUpdateContent = () => {
 		onSuccess: () => {
 			changeStatus('Idea updated Successfully', 'success');
 			closeModal();
-			queryClient.invalidateQueries({ queryKey: ['content'] });
+			queryClient.invalidateQueries({ queryKey: ['content'] }).then(() => {
+				queryClient.refetchQueries({ queryKey: ['content'] });
+			});
 		},
 
 		onError: (error) => {
 			if (axios.isAxiosError(error) && error.response) {
-				const errorMessage =
-					error.response.data.message || 'Idea not Updated';
+				const errorMessage = error.response.data.message || 'Idea not Updated';
 				changeStatus(errorMessage, 'error');
 			} else {
 				changeStatus('An unexpected error occurred:', 'error');

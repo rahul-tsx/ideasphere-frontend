@@ -1,5 +1,6 @@
 import { FC } from 'react';
 import { FaTrash, FaEdit, FaShareAlt, FaCopy } from 'react-icons/fa';
+import { SlSizeFullscreen } from 'react-icons/sl';
 import { motion } from 'framer-motion';
 import { CopyToClipboard } from 'react-copy-to-clipboard';
 import useStatus from '@/hooks/useStatus';
@@ -9,6 +10,7 @@ import { useCopySharedContent } from '@/hooks/content/useCopySharedIdea';
 interface CardSideBarProps {
 	onDelete?: () => void;
 	onEdit?: () => void;
+	onFullScreen?: () => void;
 	shareAbleHash: string;
 	owner: boolean;
 }
@@ -16,6 +18,7 @@ interface CardSideBarProps {
 const CardSideBar: FC<CardSideBarProps> = ({
 	onDelete,
 	onEdit,
+	onFullScreen,
 
 	shareAbleHash,
 	owner,
@@ -40,6 +43,11 @@ const CardSideBar: FC<CardSideBarProps> = ({
 			whileHover={{ right: '-50px' }}
 			style={{ transformOrigin: 'right center' }}>
 			<motion.div className=' right-9 flex flex-col items-center justify-between space-y-4 bg-app_card_primaryborder p-4  rounded-r-[30px] shadow-2xl shadow-app_card_primaryshadow '>
+				<button
+					className='bg-slate-500 text-white rounded-full p-2 hover:bg-slate-700 transition'
+					onClick={onFullScreen}>
+					<SlSizeFullscreen />
+				</button>
 				{owner && (
 					<button
 						onClick={onEdit}

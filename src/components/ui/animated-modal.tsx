@@ -151,10 +151,12 @@ export const ModalBody = ({
 	children,
 	className,
 	modalId,
+	modalSize,
 }: {
 	children: ReactNode;
 	className?: string;
 	modalId: string;
+	modalSize?: string;
 }) => {
 	const { isOpen } = useModal(modalId);
 
@@ -187,7 +189,8 @@ export const ModalBody = ({
 					<Overlay />
 					<motion.div
 						className={cn(
-							'min-h-[50%] max-h-[90%]  md:max-w-[60%] 2xl:max-w-[50%] flex flex-col flex-1 relative'
+							'min-h-[50%] max-h-[90%]  md:max-w-[60%] 2xl:max-w-[50%] flex flex-col flex-1 relative',
+							modalSize
 						)}>
 						<motion.div
 							ref={modalRef}

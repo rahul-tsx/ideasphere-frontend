@@ -27,7 +27,7 @@ export const updateContentValidator = (link: string) =>
 				}),
 			type: z.enum(CONTENT_TYPES).optional(),
 			tags: tagsSchema,
-			note: z.string().optional(),
+			note: z.string(),
 		})
 		.superRefine((data, ctx) => {
 			switch (data.type) {

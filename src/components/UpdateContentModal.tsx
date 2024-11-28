@@ -13,10 +13,8 @@ const UpdateContentModal: FC<UpdateContentModalProps> = ({}) => {
 		return;
 	}
 
-	const { _id, title, type, note, tags } = modalData.updateContent.data as Omit<
-		ContentSchema,
-		'link'
-	>;
+	const { _id, title, type, note, tags, link } = modalData.updateContent
+		.data as ContentSchema;
 
 	return (
 		<ModalBody
@@ -32,6 +30,7 @@ const UpdateContentModal: FC<UpdateContentModalProps> = ({}) => {
 							exit={{ opacity: 0, x: -50 }}
 							transition={{ duration: 0.2 }}>
 							<UpdateContentForm
+								link={link}
 								contentId={_id}
 								title={title}
 								type={type}

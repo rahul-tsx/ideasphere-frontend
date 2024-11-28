@@ -10,6 +10,8 @@ import useStatus from '@/hooks/useStatus';
 import axios from 'axios';
 import { useCopySharedSphere } from '@/hooks/sphere/useCopySharedSphere';
 import { useLocation } from 'react-router-dom';
+import Skeleton from '@/components/ui/custom/Skeleton';
+import noResult from '@/assets/images/noResult.webp';
 
 interface SharedProps {}
 
@@ -60,7 +62,7 @@ const Shared: FC<SharedProps> = ({}) => {
 		const pathname = location.pathname;
 		const segments = pathname.split('/').filter(Boolean);
 		if (segments.length > 2) {
-			handleSearch(fullUrl);
+			handleSearch(true, fullUrl);
 		}
 	}, [location.pathname]);
 
@@ -68,9 +70,9 @@ const Shared: FC<SharedProps> = ({}) => {
 		setInputValue(link);
 	};
 
-	const handleSearch = (url?: string) => {
+	const handleSearch = (fromUrl: boolean, url?: string) => {
 		let result;
-		if (url) {
+		if (fromUrl && url) {
 			result = linkValidator.safeParse(url);
 		} else {
 			result = linkValidator.safeParse(inputValue);
@@ -79,10 +81,8 @@ const Shared: FC<SharedProps> = ({}) => {
 		if (result.success) {
 			const { username, hash } = result.data;
 			if (username === 'shared') {
-				// setInputValue(hash);
 				setValidationResult({ username: null, hash: hash });
 			} else {
-				// setInputValue(`/${username}/${hash}`);
 				setValidationResult({ username, hash });
 			}
 		} else {
@@ -92,6 +92,34 @@ const Shared: FC<SharedProps> = ({}) => {
 			setValidationError(errorMessages);
 		}
 	};
+	if (isIdeaLoading || isSphereLoading) {
+		return (
+			<div className='ideaContainers'>
+				<Skeleton />
+				<Skeleton />
+				<Skeleton />
+				<Skeleton />
+				<Skeleton />
+			</div>
+		);
+	}
+	let content;
+	if (
+		!isIdeaLoading &&
+		!idea &&
+		!isSphereLoading &&
+		(!sphere || sphere.length === 0)
+	) {
+		content = (
+			<div className='m-auto reg:col-span-2 2xl:col-span-3 '>
+				<img
+					src={noResult}
+					alt='No Results Found'
+					className='rounded-lg max-w-[500px] max-h-[500px]'
+				/>
+			</div>
+		);
+	}
 
 	return (
 		<>
@@ -113,7 +141,7 @@ const Shared: FC<SharedProps> = ({}) => {
 						variant='primary'
 						classname='flex items-center justify-center gap-x-3'
 						type='button'
-						onClick={handleSearch}>
+						onClick={() => handleSearch(false)}>
 						<CgSearch size={20} />
 						<p>Search</p>
 					</CustomButton>
@@ -133,12 +161,7 @@ const Shared: FC<SharedProps> = ({}) => {
 			</div>
 
 			<div className='ideaContainers'>
-				{isIdeaLoading && <p>Loading...</p>}
-
-				{!isIdeaLoading &&
-					!idea &&
-					!isSphereLoading &&
-					(!sphere || sphere.length === 0) && <p>No Content Found </p>}
+				{content}
 				{idea && (
 					<Card
 						key={idea._id}
@@ -150,7 +173,6 @@ const Shared: FC<SharedProps> = ({}) => {
 						tags={idea.tags}
 					/>
 				)}
-				{isSphereLoading && <p>Loading...</p>}
 
 				{sphere &&
 					sphere.map((idea) => (

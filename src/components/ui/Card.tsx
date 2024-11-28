@@ -1,4 +1,3 @@
-import { ContentType } from '@/types/utilityTypes';
 import { FC, useState } from 'react';
 import { motion } from 'framer-motion';
 import defaultImage from '@/assets/images/ideasphere.webp';
@@ -12,59 +11,57 @@ import { extractYouTubeId } from '@/lib/utility/extractYoutubeId';
 
 import { convertTweetLinks } from '@/lib/utility/convertTweetLinks';
 import { Tweet } from 'react-tweet';
+import { useModal } from '@/hooks/useModal';
+import ViewFullContentModal from '../ViewFullContentModal';
+import { ContentSchema } from '@/types/contentTypes';
 
 interface CardProps {
-	contentId: string;
-	title: string;
-	link: string;
-	note?: string;
-	authorId: string;
-	tags?: { _id: string; title: string }[];
-	type: ContentType;
+	content: ContentSchema;
 	image?: string; // Optional image prop
 	onEdit?: () => void; // Optional edit callback
-	onShare?: () => void; // Optional share callback
 }
 
-const Card: FC<CardProps> = ({
-	contentId,
-	title,
-	link,
-	note,
-	tags,
-	type,
-	image,
-	authorId,
-	onEdit,
-}) => {
+const Card: FC<CardProps> = ({ content, image, onEdit }) => {
 	// Renders content based on the type
 	const [alertOpen, setAlertOpen] = useState(false);
 	const { mutate: deleteIdea } = useDeleteContent();
-	const { data: hash } = useShareContent(contentId);
+	const { data: hash } = useShareContent(content._id);
 	const { userId } = useAuthStore();
+	const { openModal } = useModal('ViewFullCard');
 
 	const triggerAlertBox = () => {
 		setAlertOpen(true);
 	};
 	const handleConfirm = () => {
-		deleteIdea({ contentId });
+		deleteIdea({ contentId: content._id });
 	};
 
 	const renderContent = () => {
-		switch (type) {
+		switch (content.type) {
+			// case 'blog':
+			// 	return (
+			// 		<iframe
+			// 			src={link}
+			// 			width='100%'
+			// 			height='300px'
+			// 			className='border-none'></iframe>
+			// 	);
 			case 'tweet':
-				const tweetUrl = convertTweetLinks(link);
+				const tweetUrl = convertTweetLinks(content.link);
 				// return <TweetComponent tweetUrl={tweetUrl} />;
 
 				return <Tweet id={tweetUrl.tweetId!} />;
 
 			case 'youtube':
+				console.log('Card');
+				console.log(content.link);
+				console.log(extractYouTubeId(content.link));
 				return (
 					<iframe
 						width='100%'
 						height='200'
 						src={`https://www.youtube.com/embed/
-							${extractYouTubeId(link)}
+							${extractYouTubeId(content.link)}
 						`}
 						title='YouTube video'
 						frameBorder='0'
@@ -75,7 +72,7 @@ const Card: FC<CardProps> = ({
 			default:
 				return (
 					<a
-						href={link}
+						href={content.link}
 						className='text-blue-500 underline break-words'
 						target='_blank'
 						rel='noopener noreferrer'>
@@ -92,20 +89,20 @@ const Card: FC<CardProps> = ({
 				initial={{ opacity: 0, y: 30 }}
 				animate={{ opacity: 1, y: 0 }}
 				transition={{ duration: 0.5, ease: 'easeOut' }}>
-				{type !== 'youtube' && type !== 'tweet' && (
+				{content.type !== 'youtube' && content.type !== 'tweet' && (
 					<div className='relative w-full h-48 overflow-hidden rounded-lg mb-4'>
 						<img
 							src={image || defaultImage}
-							alt={title}
+							alt={content.title}
 							className='object-cover w-full h-full'
 						/>
 					</div>
 				)}
-				<h2 className='text-xl font-semibold mb-4'>{title}</h2>
+				<h2 className='text-xl font-semibold mb-4'>{content.title}</h2>
 				<div className='content mb-4'>{renderContent()}</div>
 				<div className='tags flex flex-wrap gap-2'>
-					{tags &&
-						tags.map((tag) => (
+					{content.tags &&
+						content.tags.slice(0, 3).map((tag) => (
 							<span
 								key={tag._id}
 								className='bg-app_btn_primary_bg text-white font-semibold px-4 py-1 rounded-full text-sm'>
@@ -113,17 +110,20 @@ const Card: FC<CardProps> = ({
 							</span>
 						))}
 				</div>
-				{note && <p className='mt-4 text-app_text_secondary text-sm'>{note}</p>}
-
-			
+				{content.note && (
+					<p className='mt-4 text-app_text_secondary text-sm truncate max-w-[50ch]'>
+						{content.note}
+					</p>
+				)}
 			</motion.div>
 			<CardSideBar
-				owner={userId === authorId}
+				owner={userId === content.authorId}
 				onDelete={triggerAlertBox}
 				onEdit={onEdit}
+				onFullScreen={openModal}
 				shareAbleHash={hash}
 			/>
-
+			<ViewFullContentModal content={content} />
 			<AlertBox
 				open={alertOpen}
 				setOpen={setAlertOpen}

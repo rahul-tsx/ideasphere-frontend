@@ -23,7 +23,6 @@ interface UpdateContentFormProps {
 	note?: string;
 }
 
-
 type FormSchema = z.infer<ReturnType<typeof updateContentValidator>>;
 
 const UpdateContentForm: FC<UpdateContentFormProps> = ({
@@ -42,12 +41,11 @@ const UpdateContentForm: FC<UpdateContentFormProps> = ({
 		resolver: zodResolver(updateContentValidator(link)),
 		defaultValues: { note: note, title: title },
 	});
-
+	console.log('my', link);
 	const { mutate: updateContent, isPending } = useUpdateContent();
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data: updateContentSchema) => {
-	
 		updateContent({ contentData: data, contentId: contentId });
 	};
 
