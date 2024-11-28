@@ -7,12 +7,12 @@ export const linkValidator = z
 		try {
 			const url = new URL(input);
 			const hostname = getHostname();
-			const port = process.env.VITE_FRONTEND_PORT;
+			// const port = process.env.VITE_FRONTEND_PORT;
 			const pathname = '/dashboard/shared';
 
 			const isCorrectHostname = url.hostname === hostname;
 
-			const isCorrectPort = port ? url.port === port : true;
+			// const isCorrectPort = port ? url.port === port : true;
 
 			const isCorrectPathname = url.pathname.startsWith(pathname);
 
@@ -28,7 +28,7 @@ export const linkValidator = z
 
 			if (
 				isCorrectHostname &&
-				isCorrectPort &&
+				// isCorrectPort &&
 				isCorrectPathname &&
 				isValidHash &&
 				isValidUsername

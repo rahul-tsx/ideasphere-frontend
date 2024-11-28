@@ -30,7 +30,7 @@ const CardSideBar: FC<CardSideBarProps> = ({
 		return;
 	}
 
-	const shareableLink = `http://${hostname}:${process.env.VITE_FRONTEND_PORT}/dashboard/shared/${shareAbleHash}`;
+	const shareableLink = `http://${hostname}/dashboard/shared/${shareAbleHash}`;
 	return (
 		<motion.div
 			className='z-10 absolute top-3 -right-4  '

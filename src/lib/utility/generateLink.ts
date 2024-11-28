@@ -6,7 +6,7 @@ interface generateLinkType {
 }
 export const generateLink = ({ pathname, param }: generateLinkType) => {
 	const hostname = getHostname();
-	const protocol = 'http://';
-	const port = process.env.VITE_FRONTEND_PORT;
-	return `${protocol}${hostname}:${port}/${pathname}/${param}`;
+	const protocol = window.location.protocol;
+	// const port = process.env.VITE_FRONTEND_PORT;
+	return `${protocol}${hostname}/${pathname}/${param}`;
 };
