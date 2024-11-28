@@ -25,7 +25,6 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 
 	// Form submission handler
 	const onSubmit: SubmitHandler<FormSchema> = (data) => {
-	
 		createContent(data);
 	};
 
@@ -97,6 +96,7 @@ const AddContentForm: FC<AddContentFormProps> = () => {
 						<TagSelector
 							label='Tags'
 							//TODO:HANDLE THIS ERROR
+							//@ts-ignore
 							value={field.value || []}
 							onChange={field.onChange}
 						/>

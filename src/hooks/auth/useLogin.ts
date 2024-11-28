@@ -6,7 +6,6 @@ import { useModal } from '../useModal';
 import { useNavigate } from 'react-router-dom';
 import useAuthStore from '@/store/authStore';
 import axios from 'axios';
-import { useFetchSphereStatus } from '../sphere/useFetchSphereStatus';
 import { sphereStatus } from '@/api/content/share';
 
 export const useLogin = () => {

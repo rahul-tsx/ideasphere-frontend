@@ -1,15 +1,14 @@
-import { FC, useEffect, useState } from 'react';
+import { FC,useState } from 'react';
 import { FaTimes } from 'react-icons/fa';
-import { useDebounce } from '@/hooks/useDebounce';
 import { cn } from '@/lib/utils';
 
 interface CustomInputProps {
 	name: string;
 	className?: string;
 	error?: string;
-	onChangeValue?: (value: string) => void; // Optional, for additional features
-	isClearable?: boolean; // Enables clear functionality
-	isSearchable?: boolean; // Enables search functionality
+	onChangeValue?: (value: string) => void; 
+	isClearable?: boolean; 
+	isSearchable?: boolean; 
 }
 
 export const CustomInputBox: FC<CustomInputProps> = ({
@@ -23,7 +22,7 @@ export const CustomInputBox: FC<CustomInputProps> = ({
 	...rest
 }) => {
 	const [value, setValue] = useState<string>('');
-	const debouncedValue = useDebounce(value, 500); // Debounce with 1 second delay
+	
 
 	// Handles input changes
 	const handleChange = (e: React.ChangeEvent<HTMLInputElement>) => {

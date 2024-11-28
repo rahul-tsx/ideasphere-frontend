@@ -16,8 +16,8 @@ const Provider: FC<ProviderProps> = ({ children }) => {
 	const changeStatus = (
 		message: string,
 		variant: variantTypes = 'default',
-		// eslint-disable-next-line @typescript-eslint/no-unused-vars
-		isCopy: boolean = false
+		
+		
 	) => {
 		setStatus({ msg: message, variant });
 	};

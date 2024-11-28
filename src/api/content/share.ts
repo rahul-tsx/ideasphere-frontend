@@ -1,6 +1,5 @@
 import { FetchedIdeaSchema } from '@/types/contentTypes';
 import client from '../client';
-import useAuthStore from '@/store/authStore';
 
 export const shareSphere = async () => {
 	const response = await client.get(`${process.env.VITE_SUB_URL}/shared`);

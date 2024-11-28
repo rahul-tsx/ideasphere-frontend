@@ -165,12 +165,7 @@ const Shared: FC<SharedProps> = ({}) => {
 				{idea && (
 					<Card
 						key={idea._id}
-						contentId={idea._id}
-						link={idea.link}
-						title={idea.title}
-						type={idea.type}
-						authorId={idea.authorId}
-						tags={idea.tags}
+						content={idea}
 					/>
 				)}
 
@@ -178,12 +173,7 @@ const Shared: FC<SharedProps> = ({}) => {
 					sphere.map((idea) => (
 						<Card
 							key={idea._id}
-							contentId={idea._id}
-							link={idea.link}
-							title={idea.title}
-							type={idea.type}
-							authorId={idea.authorId}
-							tags={idea.tags}
+							content={idea}
 						/>
 					))}
 			</div>
@@ -193,4 +183,4 @@ const Shared: FC<SharedProps> = ({}) => {
 
 export default Shared;
 
-// http://localhost:5173/dashboard/shared/$2b$10$3hI5p4JtV6F8DIsLsgaSkeV1bI2QtE82txbo3_zb1gUKOj0OhusYy
+
