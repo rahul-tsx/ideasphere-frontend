@@ -1,13 +1,15 @@
-import { useMutation, useQuery, useQueryClient } from '@tanstack/react-query';
+import { useMutation, useQuery } from '@tanstack/react-query';
 import useStatus from '../useStatus';
 import axios from 'axios';
 import { addContent, getAllContent } from '@/api/content/content';
 import { useModal } from '../useModal';
+import useTimestamp from '../auth/useTimestamp';
 
 export const useContent = () => {
 	const changeStatus = useStatus();
-	const queryClient = useQueryClient();
+	
 	const { closeModal } = useModal('addContent');
+	const { timestamp, setTimestamp } = useTimestamp();
 
 	const {
 		data: content,
@@ -15,7 +17,7 @@ export const useContent = () => {
 		isError,
 		error,
 	} = useQuery({
-		queryKey: ['content'],
+		queryKey: ['content', timestamp],
 		queryFn: getAllContent,
 	});
 
@@ -26,7 +28,7 @@ export const useContent = () => {
 	} = useMutation({
 		mutationFn: addContent,
 		onError: (error) => {
-			// Handle errors during tag creation
+		
 			if (axios.isAxiosError(error) && error.response) {
 				const errorMessage =
 					error.response.data.message || 'Content not created';
@@ -38,7 +40,8 @@ export const useContent = () => {
 		onSuccess: () => {
 			closeModal();
 			changeStatus('Content Added Successfully', 'success');
-			queryClient.invalidateQueries({ queryKey: ['content'] });
+			setTimestamp(Date.now());
+		
 		},
 	});
 

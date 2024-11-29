@@ -1,14 +1,16 @@
 import { updateContent } from '@/api/content/content';
 import { updateContentSchema } from '@/types/contentTypes';
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import useStatus from '../useStatus';
 import { useModal } from '../useModal';
 import axios from 'axios';
+import useTimestamp from '../auth/useTimestamp';
 
 export const useUpdateContent = () => {
-	const queryClient = useQueryClient();
+	
 	const changeStatus = useStatus();
 	const { closeModal } = useModal('updateContent');
+	const { setTimestamp } = useTimestamp();
 
 	return useMutation({
 		mutationFn: ({
@@ -22,9 +24,7 @@ export const useUpdateContent = () => {
 		onSuccess: () => {
 			changeStatus('Idea updated Successfully', 'success');
 			closeModal();
-			queryClient.invalidateQueries({ queryKey: ['content'] }).then(() => {
-				queryClient.refetchQueries({ queryKey: ['content'] });
-			});
+			setTimestamp(Date.now());
 		},
 
 		onError: (error) => {

@@ -1,11 +1,12 @@
 import { deleteContent } from '@/api/content/content';
 
-import { useMutation, useQueryClient } from '@tanstack/react-query';
+import { useMutation } from '@tanstack/react-query';
 import useStatus from '../useStatus';
 import axios from 'axios';
+import useTimestamp from '../auth/useTimestamp';
 
 export const useDeleteContent = () => {
-	const queryClient = useQueryClient();
+	const { setTimestamp } = useTimestamp();
 	const changeStatus = useStatus();
 
 	return useMutation({
@@ -14,7 +15,7 @@ export const useDeleteContent = () => {
 
 		onSuccess: () => {
 			changeStatus('Idea Deleted Successfully', 'success');
-			queryClient.invalidateQueries({ queryKey: ['content'] });
+			setTimestamp(Date.now());
 		},
 
 		onError: (error) => {

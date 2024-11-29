@@ -7,18 +7,14 @@ import { statusObj, variantTypes } from '@/types/utilityTypes';
 import { QueryClient, QueryClientProvider } from '@tanstack/react-query';
 import RouterProvider from './RouterProvider';
 import { ThemeProvider } from './ThemeProvider';
+import TimestampProvider from './TimestampProvider';
 interface ProviderProps {
 	children: React.ReactNode;
 }
 
 const Provider: FC<ProviderProps> = ({ children }) => {
 	const [status, setStatus] = useState<statusObj | null>(null);
-	const changeStatus = (
-		message: string,
-		variant: variantTypes = 'default',
-		
-		
-	) => {
+	const changeStatus = (message: string, variant: variantTypes = 'default') => {
 		setStatus({ msg: message, variant });
 	};
 	useEffect(() => {
@@ -89,14 +85,16 @@ const Provider: FC<ProviderProps> = ({ children }) => {
 		<>
 			<StatusContext.Provider value={{ status, changeStatus }}>
 				<QueryClientProvider client={queryClient}>
-					<ThemeProvider
-						defaultTheme='dark'
-						storageKey='vite-ui-theme'>
-						<ModalProvider>
-							{children}
-							<RouterProvider />
-						</ModalProvider>
-					</ThemeProvider>
+					<TimestampProvider>
+						<ThemeProvider
+							defaultTheme='dark'
+							storageKey='vite-ui-theme'>
+							<ModalProvider>
+								{children}
+								<RouterProvider />
+							</ModalProvider>
+						</ThemeProvider>
+					</TimestampProvider>
 				</QueryClientProvider>
 			</StatusContext.Provider>
 		</>
