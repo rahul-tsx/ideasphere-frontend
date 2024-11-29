@@ -1,50 +1,68 @@
-# React + TypeScript + Vite
+# IdeaSphere - Frontend
 
-This template provides a minimal setup to get React working in Vite with HMR and some ESLint rules.
+IdeaSphere is a MERN stack application designed to help you organize, store, and share your ideas seamlessly. With a clean and responsive interface, you can save, categorize, and instantly find your ideas whenever you need them. It also allows you to share your knowledge with others in a collaborative space.
 
-Currently, two official plugins are available:
+This is the **Frontend** part of the application built with **ReactJs**, **TypeScript**, and **Tailwind CSS**. It connects to a separate backend created with **Node.js**, **Express**, and **MongoDB**.
 
-- [@vitejs/plugin-react](https://github.com/vitejs/vite-plugin-react/blob/main/packages/plugin-react/README.md) uses [Babel](https://babeljs.io/) for Fast Refresh
-- [@vitejs/plugin-react-swc](https://github.com/vitejs/vite-plugin-react-swc) uses [SWC](https://swc.rs/) for Fast Refresh
+---
 
-## Expanding the ESLint configuration
+![alt text](image.png)
 
-If you are developing a production application, we recommend updating the configuration to enable type aware lint rules:
+![alt text](image-1.png)
 
-- Configure the top-level `parserOptions` property like this:
+## Features
 
-```js
-export default tseslint.config({
-  languageOptions: {
-    // other options...
-    parserOptions: {
-      project: ['./tsconfig.node.json', './tsconfig.app.json'],
-      tsconfigRootDir: import.meta.dirname,
-    },
-  },
-})
-```
+- **User Authentication**: Log in to your account and access your personal sphere of ideas.
+- **Save Anything**: Bookmark articles, links, tweets, blogs, and more with just a few clicks.
+- **Organize Ideas**: Use tags and categories to quickly find and organize your saved content.
+- **Share Your Ideas**: Collaborate with friends or share your knowledge with others.
+- **Responsive Design**: Works seamlessly on desktop and mobile devices.
 
-- Replace `tseslint.configs.recommended` to `tseslint.configs.recommendedTypeChecked` or `tseslint.configs.strictTypeChecked`
-- Optionally add `...tseslint.configs.stylisticTypeChecked`
-- Install [eslint-plugin-react](https://github.com/jsx-eslint/eslint-plugin-react) and update the config:
+---
 
-```js
-// eslint.config.js
-import react from 'eslint-plugin-react'
+### Technologies Used
 
-export default tseslint.config({
-  // Set the react version
-  settings: { react: { version: '18.3' } },
-  plugins: {
-    // Add the react plugin
-    react,
-  },
-  rules: {
-    // other rules...
-    // Enable its recommended rules
-    ...react.configs.recommended.rules,
-    ...react.configs['jsx-runtime'].rules,
-  },
-})
-```
+- **Frontend**:
+
+  - ReactJS
+  - TypeScript
+  - Tailwind CSS
+  - Zustand (for state management)
+  - Zod (for form validation)
+  - Axios (for API requests)
+  - Framer Motion (for animations)
+  - React Router (for routing)
+
+- **Backend**:
+  - Node.js
+  - Express
+  - MongoDB
+
+---
+
+## Live Site
+
+You can explore the live version of **IdeaSphere** by visiting the following link:
+
+[**IdeaSphere - Live Site**](https://ideasphere-fawn.vercel.app/)
+
+## Test Credentials
+
+To test the **IdeaSphere** application, you can use the following test credentials:
+
+### Login with Test User
+
+- **Username**: `test1@gmail.com`
+- **Password**: `123456`
+- **Username**: `test2@gmail.com`
+- **Password**: `123456`
+
+These credentials provide access to the app's features. You can explore the functionality by logging in with this test account and interacting with the platform as a normal user.
+
+---
+
+## Features in Progress & Future Plans
+
+- AI Integration: Future integration of an AI-powered chatbot using a vector database to help users query their ideas within the sphere.
+- Enhanced Search: Advanced search capabilities for easier idea discovery.
+- Collaborative Features: Improve sharing and collaboration with more granular access control.
