@@ -25,8 +25,8 @@ export const useLogin = () => {
 			setuserId(response.data._id);
 			setUsername(response.data.username);
 			try {
-				const sphereResponse = await sphereStatus(); 
-				setSphereStatus(sphereResponse.active); 
+				const sphereResponse = await sphereStatus();
+				setSphereStatus(sphereResponse.active);
 			} catch (error) {
 				changeStatus('Failed to fetch sphere status', 'error');
 			}
@@ -35,6 +35,7 @@ export const useLogin = () => {
 		},
 
 		onError: (error) => {
+			console.error('my error', error);
 			if (axios.isAxiosError(error) && error.response) {
 				const errorMessage = error.response.data.message || 'Login failed';
 				// console.error('Login error:', errorMessage);
