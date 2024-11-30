@@ -3,11 +3,11 @@ import useStatus from '../useStatus';
 import axios from 'axios';
 import { addContent, getAllContent } from '@/api/content/content';
 import { useModal } from '../useModal';
-import useTimestamp from '../auth/useTimestamp';
+import useTimestamp from '../useTimestamp';
 
 export const useContent = () => {
 	const changeStatus = useStatus();
-	
+
 	const { closeModal } = useModal('addContent');
 	const { timestamp, setTimestamp } = useTimestamp();
 
@@ -28,7 +28,6 @@ export const useContent = () => {
 	} = useMutation({
 		mutationFn: addContent,
 		onError: (error) => {
-		
 			if (axios.isAxiosError(error) && error.response) {
 				const errorMessage =
 					error.response.data.message || 'Content not created';
@@ -41,7 +40,6 @@ export const useContent = () => {
 			closeModal();
 			changeStatus('Content Added Successfully', 'success');
 			setTimestamp(Date.now());
-		
 		},
 	});
 

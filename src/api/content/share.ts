@@ -24,14 +24,11 @@ export const toggleSphereVisibility = async (
 	return response.data.data;
 };
 export const sphereStatus = async () => {
-	// const { setSphereStatus } = useAuthStore();
 	try {
 		const response = await client.get(
 			`${process.env.VITE_SUB_URL}/shared/status`
 		);
 		
-
-		// setSphereStatus(response.data.data.active);
 
 		return response.data.data;
 	} catch (error) {

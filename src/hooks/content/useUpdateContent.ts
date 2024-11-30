@@ -4,10 +4,9 @@ import { useMutation } from '@tanstack/react-query';
 import useStatus from '../useStatus';
 import { useModal } from '../useModal';
 import axios from 'axios';
-import useTimestamp from '../auth/useTimestamp';
+import useTimestamp from '../useTimestamp';
 
 export const useUpdateContent = () => {
-	
 	const changeStatus = useStatus();
 	const { closeModal } = useModal('updateContent');
 	const { setTimestamp } = useTimestamp();

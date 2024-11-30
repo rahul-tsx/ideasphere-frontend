@@ -3,7 +3,7 @@ import { deleteContent } from '@/api/content/content';
 import { useMutation } from '@tanstack/react-query';
 import useStatus from '../useStatus';
 import axios from 'axios';
-import useTimestamp from '../auth/useTimestamp';
+import useTimestamp from '../useTimestamp';
 
 export const useDeleteContent = () => {
 	const { setTimestamp } = useTimestamp();
