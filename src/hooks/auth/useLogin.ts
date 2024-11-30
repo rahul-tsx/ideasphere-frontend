@@ -36,13 +36,25 @@ export const useLogin = () => {
 
 		onError: (error) => {
 			console.error('my error', error);
-			if (axios.isAxiosError(error) && error.response) {
-				const errorMessage = error.response.data.message || 'Login failed';
-				// console.error('Login error:', errorMessage);
-				changeStatus(errorMessage, 'error');
+			// if (axios.isAxiosError(error) && error.response) {
+			// 	const errorMessage = error.response.data.message || 'Login failed';
+			// 	// console.error('Login error:', errorMessage);
+			// 	changeStatus(errorMessage, 'error');
+			// } else {
+			// 	// console.error('An unexpected error occurred:', error);
+			// 	changeStatus('An unexpected error occurred:', 'error');
+			// }
+			if (axios.isAxiosError(error)) {
+				if (error.response) {
+					const errorMessage = error.response.data?.message || 'Login failed';
+					changeStatus(errorMessage, 'error');
+				} else {
+					changeStatus('Network error. Please check your connection.', 'error');
+				}
+			} else if (error instanceof Error) {
+				changeStatus(error.message || 'An unexpected error occurred.', 'error');
 			} else {
-				// console.error('An unexpected error occurred:', error);
-				changeStatus('An unexpected error occurred:', 'error');
+				changeStatus('An unknown error occurred.', 'error');
 			}
 		},
 	});

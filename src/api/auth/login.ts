@@ -10,5 +10,7 @@ export const login = async (credentials: loginSchema) => {
 		);
 
 		return response.data;
-	} catch (error) {}
+	} catch (error) {
+		console.error('login.ts', error);
+	}
 };
