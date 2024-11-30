@@ -1,4 +1,4 @@
-# IdeaSphere - Frontend
+# IdeaSphere
 
 IdeaSphere is a MERN stack application designed to help you organize, store, and share your ideas seamlessly. With a clean and responsive interface, you can save, categorize, and instantly find your ideas whenever you need them. It also allows you to share your knowledge with others in a collaborative space.
 
